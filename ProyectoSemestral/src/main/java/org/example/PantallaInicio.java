@@ -78,6 +78,7 @@ public class PantallaInicio {
         VBox layout = new VBox(10);
         layout.setStyle("-fx-background-color: #f0f0f0;");
         layout.getChildren().addAll(btnCrearHabitat, btnGestionAnimales, btnGestionComida, btnEstadoAnimales);
+        layout.setTranslateX(20); // Alinear al lado izquierdo
 
         Scene scene = new Scene(layout, 800, 600); // Aumentar el tamaño de la ventana
         stage.setScene(scene);

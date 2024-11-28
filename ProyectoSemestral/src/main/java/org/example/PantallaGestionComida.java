@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class PantallaGestionComida {
     private Stage stage;
@@ -24,6 +26,9 @@ public class PantallaGestionComida {
         cantidadComida.setPromptText("Cantidad de Comida");
 
         Button btnAgregar = new Button("Agregar Comida");
+        btnAgregar.setFont(new Font("Arial", 16));
+        btnAgregar.setTextFill(Color.WHITE);
+        btnAgregar.setStyle("-fx-background-color: #4CAF50;");
         btnAgregar.setOnAction(event -> {
             try {
                 String tipo = tipoComida.getText();
@@ -51,8 +56,19 @@ public class PantallaGestionComida {
             }
         });
 
+        Button btnVolver = new Button("Volver");
+        btnVolver.setFont(new Font("Arial", 16));
+        btnVolver.setTextFill(Color.WHITE);
+        btnVolver.setStyle("-fx-background-color: #f44336;");
+        btnVolver.setOnAction(event -> {
+            PantallaInicio pantallaInicio = new PantallaInicio(stage, controller);
+            pantallaInicio.mostrar();
+        });
+
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(tipoComida, cantidadComida, btnAgregar);
+        layout.setStyle("-fx-background-color: #f0f0f0;");
+        layout.getChildren().addAll(tipoComida, cantidadComida, btnAgregar, btnVolver);
+        layout.setTranslateX(20); // Alinear al lado izquierdo
 
         Scene scene = new Scene(layout, 800, 600); // Aumentar el tamaño de la ventana
         stage.setScene(scene);

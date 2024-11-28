@@ -1,9 +1,12 @@
 import javafx.animation.ScaleTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class PantallaEstadoAnimales {
     private Stage stage;
@@ -37,6 +40,18 @@ public class PantallaEstadoAnimales {
             habitatLabel.setOnMouseExited(event -> habitatLabel.setText("Hábitat: " + habitat.getNombre()));
             layout.getChildren().add(habitatLabel);
         }
+
+        Button btnVolver = new Button("Volver");
+        btnVolver.setFont(new Font("Arial", 16));
+        btnVolver.setTextFill(Color.WHITE);
+        btnVolver.setStyle("-fx-background-color: #f44336;");
+        btnVolver.setOnAction(event -> {
+            PantallaInicio pantallaInicio = new PantallaInicio(stage, controller);
+            pantallaInicio.mostrar();
+        });
+
+        layout.getChildren().add(btnVolver);
+        layout.setTranslateX(20); // Alinear al lado izquierdo
 
         Scene scene = new Scene(layout, 800, 600); // Aumentar el tamaño de la ventana
         stage.setScene(scene);

@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class PantallaGestionAnimales {
     private Stage stage;
@@ -30,6 +32,9 @@ public class PantallaGestionAnimales {
         nombreHabitat.setPromptText("Nombre del Hábitat");
 
         Button btnAgregar = new Button("Agregar Animal");
+        btnAgregar.setFont(new Font("Arial", 16));
+        btnAgregar.setTextFill(Color.WHITE);
+        btnAgregar.setStyle("-fx-background-color: #4CAF50;");
         btnAgregar.setOnAction(event -> {
             try {
                 String nombre = nombreAnimal.getText();
@@ -59,8 +64,19 @@ public class PantallaGestionAnimales {
             }
         });
 
+        Button btnVolver = new Button("Volver");
+        btnVolver.setFont(new Font("Arial", 16));
+        btnVolver.setTextFill(Color.WHITE);
+        btnVolver.setStyle("-fx-background-color: #f44336;");
+        btnVolver.setOnAction(event -> {
+            PantallaInicio pantallaInicio = new PantallaInicio(stage, controller);
+            pantallaInicio.mostrar();
+        });
+
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(nombreAnimal, especieAnimal, edadAnimal, nombreHabitat, btnAgregar);
+        layout.setStyle("-fx-background-color: #f0f0f0;");
+        layout.getChildren().addAll(nombreAnimal, especieAnimal, edadAnimal, nombreHabitat, btnAgregar, btnVolver);
+        layout.setTranslateX(20); // Alinear al lado izquierdo
 
         Scene scene = new Scene(layout, 800, 600); // Aumentar el tamaño de la ventana
         stage.setScene(scene);

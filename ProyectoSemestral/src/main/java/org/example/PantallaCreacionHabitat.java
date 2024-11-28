@@ -43,9 +43,19 @@ public class PantallaCreacionHabitat {
             st.play();
         });
 
+        Button btnVolver = new Button("Volver");
+        btnVolver.setFont(new Font("Arial", 16));
+        btnVolver.setTextFill(Color.WHITE);
+        btnVolver.setStyle("-fx-background-color: #f44336;");
+        btnVolver.setOnAction(event -> {
+            PantallaInicio pantallaInicio = new PantallaInicio(stage, controller);
+            pantallaInicio.mostrar();
+        });
+
         VBox layout = new VBox(10);
         layout.setStyle("-fx-background-color: #f0f0f0;");
-        layout.getChildren().addAll(nombreHabitat, tipoHabitat, btnCrear);
+        layout.getChildren().addAll(nombreHabitat, tipoHabitat, btnCrear, btnVolver);
+        layout.setTranslateX(20); // Alinear al lado izquierdo
 
         Scene scene = new Scene(layout, 800, 600); // Aumentar el tamaño de la ventana
         stage.setScene(scene);
