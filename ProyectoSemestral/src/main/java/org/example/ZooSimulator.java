@@ -36,7 +36,7 @@ public class ZooSimulator extends Application {
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: #f0f0f0;");
         root.getChildren().add(btnInicio);
-        Scene scene = new Scene(root, 800, 600); // Aumentar el tamaño de la ventana
+        Scene scene = new Scene(root, 996, 755); // Establecer el tamaño inicial de la ventana
         primaryStage.setScene(scene);
         primaryStage.show();
     }

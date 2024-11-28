@@ -1,13 +1,20 @@
 import javafx.animation.ScaleTransition;
+import javafx.geometry.Pos; // Asegúrate de incluir esta línea
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text; // Importar la clase Text
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import java.io.File;
 
 public class PantallaInicio {
     private Stage stage;
@@ -19,6 +26,21 @@ public class PantallaInicio {
     }
 
     public void mostrar() {
+        String videoFile = "src/main/resources/videos/background.mp4";
+        Media media = new Media(new File(videoFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+
+        MediaView mediaView = new MediaView(mediaPlayer);
+        mediaView.setPreserveRatio(false); // No mantener la relación de aspecto
+        mediaView.fitWidthProperty().bind(stage.widthProperty());
+        mediaView.fitHeightProperty().bind(stage.heightProperty());
+
+        Text titulo = new Text("Bienvenidos al Zoo");
+        titulo.setFont(new Font("Arial", 24));
+        titulo.setFill(Color.WHITE);
+
         Button btnCrearHabitat = new Button("Crear Hábitat");
         btnCrearHabitat.setFont(new Font("Arial", 16));
         btnCrearHabitat.setTextFill(Color.WHITE);
@@ -76,11 +98,14 @@ public class PantallaInicio {
         btnEstadoAnimales.setGraphic(imgEstadoAnimales);
 
         VBox layout = new VBox(10);
-        layout.setStyle("-fx-background-color: #f0f0f0;");
-        layout.getChildren().addAll(btnCrearHabitat, btnGestionAnimales, btnGestionComida, btnEstadoAnimales);
-        layout.setTranslateX(20); // Alinear al lado izquierdo
+        layout.setStyle("-fx-background-color: transparent;");
+        layout.getChildren().addAll(titulo, btnCrearHabitat, btnGestionAnimales, btnGestionComida, btnEstadoAnimales);
+        layout.setAlignment(Pos.CENTER); // Centrar los botones y el texto
 
-        Scene scene = new Scene(layout, 800, 600); // Aumentar el tamaño de la ventana
+        StackPane root = new StackPane();
+        root.getChildren().addAll(mediaView, layout);
+
+        Scene scene = new Scene(root, 996, 755); // Establecer el tamaño inicial de la ventana
         stage.setScene(scene);
         stage.show();
     }
