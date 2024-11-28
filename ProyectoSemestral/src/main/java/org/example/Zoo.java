@@ -18,6 +18,24 @@ public class Zoo {
         }
     }
 
+    public Habitat buscarHabitatPorNombre(String nombre) {
+        for (Habitat habitat : habitats) {
+            if (habitat.getNombre().equals(nombre)) {
+                return habitat;
+            }
+        }
+        return null;
+    }
+
+    public Animal buscarAnimalPorNombre(String nombre, Habitat habitat) {
+        for (Animal animal : habitat.getAnimales()) {
+            if (animal.getNombre().equals(nombre)) {
+                return animal;
+            }
+        }
+        return null;
+    }
+
     // Getters y Setters
     public List<Habitat> getHabitats() {
         return habitats;
