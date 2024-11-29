@@ -144,6 +144,7 @@ public class PantallaInicio {
         st.setByX(1.1);
         st.setByY(1.1);
         st.setAutoReverse(true);
+        st.setAutoReverse(true);
         st.setCycleCount(2);
         st.play();
     }

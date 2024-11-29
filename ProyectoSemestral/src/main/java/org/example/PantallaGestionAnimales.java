@@ -119,6 +119,13 @@ public class PantallaGestionAnimales {
         TextField nombreAnimal = new TextField();
         nombreAnimal.setPromptText("Nombre del Animal");
 
+        TextField edadAnimal = new TextField();
+        edadAnimal.setPromptText("Edad del Animal");
+
+        ComboBox<String> unidadEdad = new ComboBox<>();
+        unidadEdad.getItems().addAll("Días", "Meses", "Años");
+        unidadEdad.setPromptText("Unidad de Edad");
+
         Button btnAgregar = new Button("Agregar Animal");
         btnAgregar.setFont(new Font("Arial", 16));
         btnAgregar.setTextFill(Color.WHITE);
@@ -127,9 +134,10 @@ public class PantallaGestionAnimales {
             try {
                 String nombre = nombreAnimal.getText();
                 String especie = especieAnimal.getValue();
-                int edad = Integer.parseInt(nombreAnimal.getText());
+                int edad = Integer.parseInt(edadAnimal.getText());
+                String unidad = unidadEdad.getValue();
                 String habitat = tipoHabitat.getValue();
-                Animal animal = new Animal(nombre, especie, edad);
+                Animal animal = new Animal(nombre, especie, edad, unidad);
                 controller.agregarAnimalAHabitat(habitat, animal);
                 System.out.println("Animal agregado: " + nombre);
 
@@ -163,7 +171,7 @@ public class PantallaGestionAnimales {
 
         VBox layout = new VBox(10);
         layout.setStyle("-fx-background-color: #f0f0f0;");
-        layout.getChildren().addAll(tipoHabitat, tipoAnimal, especieAnimal, nombreAnimal, btnAgregar, btnVolver);
+        layout.getChildren().addAll(tipoHabitat, tipoAnimal, especieAnimal, nombreAnimal, edadAnimal, unidadEdad, btnAgregar, btnVolver);
         layout.setTranslateX(20); // Alinear al lado izquierdo
 
         Scene scene = new Scene(layout, 800, 600); // Aumentar el tamaño de la ventana
