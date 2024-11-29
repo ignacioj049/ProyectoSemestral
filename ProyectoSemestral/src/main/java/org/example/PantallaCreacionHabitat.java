@@ -1,7 +1,7 @@
 import javafx.animation.ScaleTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -18,10 +18,12 @@ public class PantallaCreacionHabitat {
     }
 
     public void mostrar() {
-        TextField nombreHabitat = new TextField();
-        nombreHabitat.setPromptText("Nombre del Hábitat");
-
-        TextField tipoHabitat = new TextField();
+        ComboBox<String> tipoHabitat = new ComboBox<>();
+        tipoHabitat.getItems().addAll(
+                "Selva Tropical", "Sabana", "Bosque Templado", "Desierto", "Taiga", "Tundra",
+                "Arrecife de Coral", "Río", "Pantano", "Océano Abierto", "Glaciares y Hielo Ártico",
+                "Montaña Rocosa", "Aviario", "Terrario", "Zona Nocturna"
+        );
         tipoHabitat.setPromptText("Tipo de Hábitat");
 
         Button btnCrear = new Button("Crear");
@@ -29,18 +31,19 @@ public class PantallaCreacionHabitat {
         btnCrear.setTextFill(Color.WHITE);
         btnCrear.setStyle("-fx-background-color: #4CAF50;");
         btnCrear.setOnAction(event -> {
-            String nombre = nombreHabitat.getText();
-            String tipo = tipoHabitat.getText();
-            controller.crearHabitat(nombre, tipo);
-            System.out.println("Hábitat creado: " + nombre);
+            String tipo = tipoHabitat.getValue();
+            if (tipo != null) {
+                controller.crearHabitat(tipo, tipo);
+                System.out.println("Hábitat creado: " + tipo);
 
-            // Animación de escala
-            ScaleTransition st = new ScaleTransition(Duration.millis(200), btnCrear);
-            st.setByX(1.2);
-            st.setByY(1.2);
-            st.setAutoReverse(true);
-            st.setCycleCount(2);
-            st.play();
+                // Animación de escala
+                ScaleTransition st = new ScaleTransition(Duration.millis(200), btnCrear);
+                st.setByX(1.2);
+                st.setByY(1.2);
+                st.setAutoReverse(true);
+                st.setCycleCount(2);
+                st.play();
+            }
         });
 
         Button btnVolver = new Button("Volver");
@@ -54,7 +57,7 @@ public class PantallaCreacionHabitat {
 
         VBox layout = new VBox(10);
         layout.setStyle("-fx-background-color: #f0f0f0;");
-        layout.getChildren().addAll(nombreHabitat, tipoHabitat, btnCrear, btnVolver);
+        layout.getChildren().addAll(tipoHabitat, btnCrear, btnVolver);
         layout.setTranslateX(20); // Alinear al lado izquierdo
 
         Scene scene = new Scene(layout, 800, 600); // Aumentar el tamaño de la ventana

@@ -1,5 +1,5 @@
 import javafx.animation.ScaleTransition;
-import javafx.geometry.Pos; // Asegúrate de incluir esta línea
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -11,7 +11,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text; // Importar la clase Text
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
@@ -33,7 +33,7 @@ public class PantallaInicio {
         mediaPlayer.play();
 
         MediaView mediaView = new MediaView(mediaPlayer);
-        mediaView.setPreserveRatio(false); // No mantener la relación de aspecto
+        mediaView.setPreserveRatio(false);
         mediaView.fitWidthProperty().bind(stage.widthProperty());
         mediaView.fitHeightProperty().bind(stage.heightProperty());
 
@@ -77,6 +77,15 @@ public class PantallaInicio {
             animarBoton(btnEstadoAnimales);
         });
 
+        Button btnVolver = new Button("Volver");
+        btnVolver.setFont(new Font("Arial", 16));
+        btnVolver.setTextFill(Color.WHITE);
+        btnVolver.setStyle("-fx-background-color: #f44336;");
+        btnVolver.setOnAction(event -> {
+            ZooSimulator zooSimulator = new ZooSimulator();
+            zooSimulator.start(stage);
+        });
+
         ImageView imgCrearHabitat = new ImageView(new Image("file:src/main/resources/images/habitat.png"));
         imgCrearHabitat.setFitHeight(50);
         imgCrearHabitat.setFitWidth(50);
@@ -99,13 +108,13 @@ public class PantallaInicio {
 
         VBox layout = new VBox(10);
         layout.setStyle("-fx-background-color: transparent;");
-        layout.getChildren().addAll(titulo, btnCrearHabitat, btnGestionAnimales, btnGestionComida, btnEstadoAnimales);
-        layout.setAlignment(Pos.CENTER); // Centrar los botones y el texto
+        layout.getChildren().addAll(titulo, btnCrearHabitat, btnGestionAnimales, btnGestionComida, btnEstadoAnimales, btnVolver);
+        layout.setAlignment(Pos.CENTER);
 
         StackPane root = new StackPane();
         root.getChildren().addAll(mediaView, layout);
 
-        Scene scene = new Scene(root, 996, 755); // Establecer el tamaño inicial de la ventana
+        Scene scene = new Scene(root, 996, 755);
         stage.setScene(scene);
         stage.show();
     }
