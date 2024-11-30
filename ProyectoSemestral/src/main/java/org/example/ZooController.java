@@ -5,8 +5,8 @@ public class ZooController {
         this.zoo = zoo;
     }
 
-    public void crearHabitat(String nombre, String tipo) {
-        Habitat habitat = new Habitat(nombre, tipo);
+    public void crearHabitat(String nombre, String tipo, int capacidad) {
+        Habitat habitat = new Habitat(nombre, tipo, capacidad);
         zoo.agregarHabitat(habitat);
     }
 
@@ -45,7 +45,6 @@ public class ZooController {
             }
         }
     }
-
 
     public Zoo getZoo() {
         return zoo;

@@ -41,6 +41,15 @@ public class PantallaInicio {
         titulo.setFont(new Font("Arial", 24));
         titulo.setFill(Color.WHITE);
 
+        Button btnVerZoo = new Button("Ver Zoo");
+        btnVerZoo.setFont(new Font("Arial", 16));
+        btnVerZoo.setTextFill(Color.WHITE);
+        btnVerZoo.setStyle("-fx-background-color: #4CAF50;");
+        btnVerZoo.setOnAction(event -> {
+            mostrarPantallaVerZoo();
+            animarBoton(btnVerZoo);
+        });
+
         Button btnCrearHabitat = new Button("Crear Hábitat");
         btnCrearHabitat.setFont(new Font("Arial", 16));
         btnCrearHabitat.setTextFill(Color.WHITE);
@@ -86,6 +95,11 @@ public class PantallaInicio {
             zooSimulator.start(stage);
         });
 
+        ImageView imgVerZoo = new ImageView(new Image("file:src/main/resources/images/zoo.png"));
+        imgVerZoo.setFitHeight(50);
+        imgVerZoo.setFitWidth(50);
+        btnVerZoo.setGraphic(imgVerZoo);
+
         ImageView imgCrearHabitat = new ImageView(new Image("file:src/main/resources/images/habitat.png"));
         imgCrearHabitat.setFitHeight(50);
         imgCrearHabitat.setFitWidth(50);
@@ -108,7 +122,7 @@ public class PantallaInicio {
 
         VBox layout = new VBox(10);
         layout.setStyle("-fx-background-color: transparent;");
-        layout.getChildren().addAll(titulo, btnCrearHabitat, btnGestionAnimales, btnGestionComida, btnEstadoAnimales, btnVolver);
+        layout.getChildren().addAll(titulo, btnVerZoo, btnCrearHabitat, btnGestionAnimales, btnGestionComida, btnEstadoAnimales, btnVolver);
         layout.setAlignment(Pos.CENTER);
 
         StackPane root = new StackPane();
@@ -139,11 +153,15 @@ public class PantallaInicio {
         pantallaEstadoAnimales.mostrar();
     }
 
+    private void mostrarPantallaVerZoo() {
+        PantallaVerZoo pantallaVerZoo = new PantallaVerZoo(stage, controller);
+        pantallaVerZoo.mostrar();
+    }
+
     private void animarBoton(Button button) {
         ScaleTransition st = new ScaleTransition(Duration.millis(200), button);
         st.setByX(1.1);
         st.setByY(1.1);
-        st.setAutoReverse(true);
         st.setAutoReverse(true);
         st.setCycleCount(2);
         st.play();
