@@ -49,13 +49,22 @@ public class ZooController {
             }
         }
     }
+    private void mostrarAlerta(String mensaje){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("información");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
 
+<<<<<<< HEAD
     private void mostrarAlerta(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Información");
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+=======
+>>>>>>> 38137e9957e64fc4ffa65f033ba08dbb541bbf15
     }
 
     public Zoo getZoo() {
