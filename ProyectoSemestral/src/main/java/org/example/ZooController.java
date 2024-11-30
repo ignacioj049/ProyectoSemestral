@@ -1,3 +1,6 @@
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class ZooController {
     private Zoo zoo;
 
@@ -8,6 +11,7 @@ public class ZooController {
     public void crearHabitat(String nombre, String tipo) {
         Habitat habitat = new Habitat(nombre, tipo);
         zoo.agregarHabitat(habitat);
+        mostrarAlerta("Has creado un nuevo habitat");
     }
 
     public void agregarAnimalAHabitat(String nombreHabitat, Animal animal) {
@@ -45,7 +49,14 @@ public class ZooController {
             }
         }
     }
+    private void mostrarAlerta(String mensaje){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("información");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
 
+    }
 
     public Zoo getZoo() {
         return zoo;
