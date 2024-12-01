@@ -1,11 +1,40 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 public class ZooController {
     private Zoo zoo;
+    private Timeline timeline;
 
     public ZooController(Zoo zoo) {
         this.zoo = zoo;
+        iniciarSimulacion();
+    }
+
+    private void iniciarSimulacion() {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> simularConsumoComida()));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    public void simularConsumoComida() {
+        for (Habitat habitat : zoo.getHabitats()) {
+            for (Animal animal : habitat.getAnimales()) {
+                switch (animal.getTipoComida().toLowerCase()) {
+                    case "carne":
+                        habitat.consumirComida("carne", 1);
+                        break;
+                    case "vegetales":
+                        habitat.consumirComida("vegetales", 1);
+                        break;
+                    case "frutas":
+                        habitat.consumirComida("frutas", 1);
+                        break;
+                }
+            }
+        }
     }
 
     public void crearHabitat(String nombre, String tipo, int capacidad) {
@@ -27,7 +56,6 @@ public class ZooController {
             mostrarAlerta("Hábitat no encontrado: " + nombreHabitat);
         }
     }
-
     public void moverAnimal(String nombreAnimal, String nombreHabitatOrigen, String nombreHabitatDestino) {
         Habitat origen = zoo.buscarHabitatPorNombre(nombreHabitatOrigen);
         Habitat destino = zoo.buscarHabitatPorNombre(nombreHabitatDestino);
@@ -51,43 +79,91 @@ public class ZooController {
             mostrarAlerta("Hábitat de origen o destino no encontrado.");
         }
     }
-
     private boolean esHabitatAdecuado(Habitat habitat, String tipoAnimal) {
-        switch (habitat.getTipo()) {
-            case "Selva Tropical":
-                return tipoAnimal.equals("Jaguar") || tipoAnimal.equals("Mono aullador") || tipoAnimal.equals("Perezoso") || tipoAnimal.equals("Tapir") || tipoAnimal.equals("Guacamayo") || tipoAnimal.equals("Tucán") || tipoAnimal.equals("Águila arpía") || tipoAnimal.equals("Boa constrictora") || tipoAnimal.equals("Anaconda") || tipoAnimal.equals("Camaleón") || tipoAnimal.equals("Rana dardo venenosa") || tipoAnimal.equals("Mariposa morpho") || tipoAnimal.equals("Hormiga cortadora de hojas");
-            case "Sabana":
-                return tipoAnimal.equals("León") || tipoAnimal.equals("Elefante africano") || tipoAnimal.equals("Jirafa") || tipoAnimal.equals("Guepardo") || tipoAnimal.equals("Cebra") || tipoAnimal.equals("Avestruz") || tipoAnimal.equals("Secretary bird") || tipoAnimal.equals("Cocodrilo del Nilo") || tipoAnimal.equals("Víbora bufadora") || tipoAnimal.equals("Escarabajo pelotero");
-            case "Bosque Templado":
-                return tipoAnimal.equals("Oso pardo") || tipoAnimal.equals("Lobo gris") || tipoAnimal.equals("Ciervo") || tipoAnimal.equals("Zorro rojo") || tipoAnimal.equals("Búho real") || tipoAnimal.equals("Pájaro carpintero") || tipoAnimal.equals("Serpiente rata negra") || tipoAnimal.equals("Escarabajo ciervo");
-            case "Desierto":
-                return tipoAnimal.equals("Camello") || tipoAnimal.equals("Fenec") || tipoAnimal.equals("Ratón canguro") || tipoAnimal.equals("Águila calva") || tipoAnimal.equals("Buitre") || tipoAnimal.equals("Serpiente cascabel") || tipoAnimal.equals("Lagarto cornudo") || tipoAnimal.equals("Escorpión") || tipoAnimal.equals("Cucaracha del desierto");
-            case "Taiga":
-                return tipoAnimal.equals("Alce") || tipoAnimal.equals("Lince") || tipoAnimal.equals("Zorro ártico") || tipoAnimal.equals("Búho nival") || tipoAnimal.equals("Ganso salvaje") || tipoAnimal.equals("Culebra de collar");
-            case "Tundra":
-                return tipoAnimal.equals("Oso polar") || tipoAnimal.equals("Reno") || tipoAnimal.equals("Lobo ártico") || tipoAnimal.equals("Perdiz nival") || tipoAnimal.equals("Charrán ártico") || tipoAnimal.equals("Mosquito ártico");
-            case "Arrecife de Coral":
-                return tipoAnimal.equals("Pez payaso") || tipoAnimal.equals("Tiburón de arrecife") || tipoAnimal.equals("Mero") || tipoAnimal.equals("Coral") || tipoAnimal.equals("Estrella de mar") || tipoAnimal.equals("Pulpo");
-            case "Río":
-                return tipoAnimal.equals("Bagre") || tipoAnimal.equals("Piraña") || tipoAnimal.equals("Trucha") || tipoAnimal.equals("Tortuga de río") || tipoAnimal.equals("Caimán") || tipoAnimal.equals("Rana toro");
-            case "Pantano":
-                return tipoAnimal.equals("Nutria") || tipoAnimal.equals("Castor") || tipoAnimal.equals("Garza real") || tipoAnimal.equals("Ibis") || tipoAnimal.equals("Cocodrilo americano") || tipoAnimal.equals("Tortuga mordedora") || tipoAnimal.equals("Salamandra gigante") || tipoAnimal.equals("Libélula") || tipoAnimal.equals("Caracol acuático");
-            case "Océano Abierto":
-                return tipoAnimal.equals("Delfín") || tipoAnimal.equals("Ballena jorobada") || tipoAnimal.equals("Orca") || tipoAnimal.equals("Tiburón blanco") || tipoAnimal.equals("Pez espada") || tipoAnimal.equals("Medusa") || tipoAnimal.equals("Calamar gigante");
-            case "Glaciares y Hielo Ártico":
-                return tipoAnimal.equals("Oso polar") || tipoAnimal.equals("Foca") || tipoAnimal.equals("Morsa") || tipoAnimal.equals("Pingüino emperador") || tipoAnimal.equals("Krill");
-            case "Montaña Rocosa":
-                return tipoAnimal.equals("Cabra montés") || tipoAnimal.equals("Puma") || tipoAnimal.equals("Cóndor") || tipoAnimal.equals("Águila real");
-            case "Aviario":
-                return tipoAnimal.equals("Guacamayo") || tipoAnimal.equals("Tucán") || tipoAnimal.equals("Loro gris") || tipoAnimal.equals("Halcón peregrino");
-            case "Terrario":
-                return tipoAnimal.equals("Iguana") || tipoAnimal.equals("Gecko") || tipoAnimal.equals("Pitón real") || tipoAnimal.equals("Salamandra tigre");
-            case "Acuario":
-                return tipoAnimal.equals("Tiburón gato") || tipoAnimal.equals("Manta raya") || tipoAnimal.equals("Pez león") || tipoAnimal.equals("Caballito de mar") || tipoAnimal.equals("Erizo de mar");
-            case "Zona Nocturna":
-                return tipoAnimal.equals("Murciélago") || tipoAnimal.equals("Aye-aye") || tipoAnimal.equals("Serpiente nocturna") || tipoAnimal.equals("Escorpión fluorescente");
+        switch (habitat.getTipo().toLowerCase()) {
+            case "selva tropical":
+                return tipoAnimal.equalsIgnoreCase("Jaguar") || tipoAnimal.equalsIgnoreCase("Mono aullador") ||
+                        tipoAnimal.equalsIgnoreCase("Perezoso") || tipoAnimal.equalsIgnoreCase("Tapir") ||
+                        tipoAnimal.equalsIgnoreCase("Guacamayo") || tipoAnimal.equalsIgnoreCase("Tucán") ||
+                        tipoAnimal.equalsIgnoreCase("Águila arpía") || tipoAnimal.equalsIgnoreCase("Boa constrictora") ||
+                        tipoAnimal.equalsIgnoreCase("Anaconda") || tipoAnimal.equalsIgnoreCase("Camaleón") ||
+                        tipoAnimal.equalsIgnoreCase("Rana dardo venenosa") || tipoAnimal.equalsIgnoreCase("Mariposa morpho") ||
+                        tipoAnimal.equalsIgnoreCase("Hormiga cortadora de hojas");
+            case "sabana":
+                return tipoAnimal.equalsIgnoreCase("León") || tipoAnimal.equalsIgnoreCase("Elefante africano") ||
+                        tipoAnimal.equalsIgnoreCase("Jirafa") || tipoAnimal.equalsIgnoreCase("Guepardo") ||
+                        tipoAnimal.equalsIgnoreCase("Cebra") || tipoAnimal.equalsIgnoreCase("Avestruz") ||
+                        tipoAnimal.equalsIgnoreCase("Secretary bird") || tipoAnimal.equalsIgnoreCase("Cocodrilo del Nilo") ||
+                        tipoAnimal.equalsIgnoreCase("Víbora bufadora") || tipoAnimal.equalsIgnoreCase("Escarabajo pelotero");
+            case "bosque templado":
+                return tipoAnimal.equalsIgnoreCase("Oso pardo") || tipoAnimal.equalsIgnoreCase("Lobo gris") ||
+                        tipoAnimal.equalsIgnoreCase("Ciervo") || tipoAnimal.equalsIgnoreCase("Zorro rojo") ||
+                        tipoAnimal.equalsIgnoreCase("Búho real") || tipoAnimal.equalsIgnoreCase("Pájaro carpintero") ||
+                        tipoAnimal.equalsIgnoreCase("Serpiente rata negra") || tipoAnimal.equalsIgnoreCase("Escarabajo ciervo");
+            case "desierto":
+                return tipoAnimal.equalsIgnoreCase("Camello") || tipoAnimal.equalsIgnoreCase("Fenec") ||
+                        tipoAnimal.equalsIgnoreCase("Ratón canguro") || tipoAnimal.equalsIgnoreCase("Águila calva") ||
+                        tipoAnimal.equalsIgnoreCase("Buitre") || tipoAnimal.equalsIgnoreCase("Serpiente cascabel") ||
+                        tipoAnimal.equalsIgnoreCase("Lagarto cornudo") || tipoAnimal.equalsIgnoreCase("Escorpión") ||
+                        tipoAnimal.equalsIgnoreCase("Cucaracha del desierto");
+            case "taiga":
+                return tipoAnimal.equalsIgnoreCase("Alce") || tipoAnimal.equalsIgnoreCase("Lince") ||
+                        tipoAnimal.equalsIgnoreCase("Zorro ártico") || tipoAnimal.equalsIgnoreCase("Búho nival") ||
+                        tipoAnimal.equalsIgnoreCase("Ganso salvaje") || tipoAnimal.equalsIgnoreCase("Culebra de collar");
+            case "tundra":
+                return tipoAnimal.equalsIgnoreCase("Oso polar") || tipoAnimal.equalsIgnoreCase("Reno") ||
+                        tipoAnimal.equalsIgnoreCase("Lobo ártico") || tipoAnimal.equalsIgnoreCase("Perdiz nival") ||
+                        tipoAnimal.equalsIgnoreCase("Charrán ártico") || tipoAnimal.equalsIgnoreCase("Mosquito ártico");
+            case "arrecife de coral":
+                return tipoAnimal.equalsIgnoreCase("Pez payaso") || tipoAnimal.equalsIgnoreCase("Tiburón de arrecife") ||
+                        tipoAnimal.equalsIgnoreCase("Mero") || tipoAnimal.equalsIgnoreCase("Coral") ||
+                        tipoAnimal.equalsIgnoreCase("Estrella de mar") || tipoAnimal.equalsIgnoreCase("Pulpo");
+            case "río":
+                return tipoAnimal.equalsIgnoreCase("Bagre") || tipoAnimal.equalsIgnoreCase("Piraña") ||
+                        tipoAnimal.equalsIgnoreCase("Trucha") || tipoAnimal.equalsIgnoreCase("Tortuga de río") ||
+                        tipoAnimal.equalsIgnoreCase("Caimán") || tipoAnimal.equalsIgnoreCase("Rana toro");
+            case "pantano":
+                return tipoAnimal.equalsIgnoreCase("Nutria") || tipoAnimal.equalsIgnoreCase("Castor") ||
+                        tipoAnimal.equalsIgnoreCase("Garza real") || tipoAnimal.equalsIgnoreCase("Ibis") ||
+                        tipoAnimal.equalsIgnoreCase("Cocodrilo americano") || tipoAnimal.equalsIgnoreCase("Tortuga mordedora") ||
+                        tipoAnimal.equalsIgnoreCase("Salamandra gigante") || tipoAnimal.equalsIgnoreCase("Libélula") ||
+                        tipoAnimal.equalsIgnoreCase("Caracol acuático");
+            case "océano abierto":
+                return tipoAnimal.equalsIgnoreCase("Delfín") || tipoAnimal.equalsIgnoreCase("Ballena jorobada") ||
+                        tipoAnimal.equalsIgnoreCase("Orca") || tipoAnimal.equalsIgnoreCase("Tiburón blanco") ||
+                        tipoAnimal.equalsIgnoreCase("Pez espada") || tipoAnimal.equalsIgnoreCase("Medusa") ||
+                        tipoAnimal.equalsIgnoreCase("Calamar gigante");
+            case "glaciares y hielo ártico":
+                return tipoAnimal.equalsIgnoreCase("Oso polar") || tipoAnimal.equalsIgnoreCase("Foca") ||
+                        tipoAnimal.equalsIgnoreCase("Morsa") || tipoAnimal.equalsIgnoreCase("Pingüino emperador") ||
+                        tipoAnimal.equalsIgnoreCase("Krill");
+            case "montaña rocosa":
+                return tipoAnimal.equalsIgnoreCase("Cabra montés") || tipoAnimal.equalsIgnoreCase("Puma") ||
+                        tipoAnimal.equalsIgnoreCase("Cóndor") || tipoAnimal.equalsIgnoreCase("Águila real");
+            case "aviario":
+                return tipoAnimal.equalsIgnoreCase("Guacamayo") || tipoAnimal.equalsIgnoreCase("Tucán") ||
+                        tipoAnimal.equalsIgnoreCase("Loro gris") || tipoAnimal.equalsIgnoreCase("Halcón peregrino");
+            case "terrario":
+                return tipoAnimal.equalsIgnoreCase("Iguana") || tipoAnimal.equalsIgnoreCase("Gecko") ||
+                        tipoAnimal.equalsIgnoreCase("Pitón real") || tipoAnimal.equalsIgnoreCase("Salamandra tigre");
+            case "acuario":
+                return tipoAnimal.equalsIgnoreCase("Tiburón gato") || tipoAnimal.equalsIgnoreCase("Manta raya") ||
+                        tipoAnimal.equalsIgnoreCase("Pez león") || tipoAnimal.equalsIgnoreCase("Caballito de mar") ||
+                        tipoAnimal.equalsIgnoreCase("Erizo de mar");
+            case "zona nocturna":
+                return tipoAnimal.equalsIgnoreCase("Murciélago") || tipoAnimal.equalsIgnoreCase("Aye-aye") ||
+                        tipoAnimal.equalsIgnoreCase("Serpiente nocturna") || tipoAnimal.equalsIgnoreCase("Escorpión fluorescente");
             default:
                 return false;
+        }
+    }
+    public void agregarComidaAHabitat(String nombreHabitat, String tipoComida, int cantidad) {
+        Habitat habitat = zoo.buscarHabitatPorNombre(nombreHabitat);
+        if (habitat != null) {
+            habitat.agregarComida(tipoComida, cantidad);
+            mostrarAlerta("Comida agregada al hábitat " + nombreHabitat);
+        } else {
+            mostrarAlerta("Hábitat no encontrado: " + nombreHabitat);
         }
     }
 

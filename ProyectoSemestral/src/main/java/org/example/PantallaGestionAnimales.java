@@ -246,7 +246,9 @@ public class PantallaGestionAnimales {
                 Habitat habitat = controller.getZoo().buscarHabitatPorNombre(nombreHabitat);
                 if (habitat != null) {
                     if (habitat.getAnimales().size() < habitat.getCapacidad()) {
-                        Animal animal = new Animal(nombre, especie, 0, "Años"); // Edad y unidad de edad predeterminadas
+                        // Añadir el tipo de comida preferida por el animal
+                        String tipoComida = determinarTipoComida(especie);
+                        Animal animal = new Animal(nombre, especie, 0, "Años", tipoComida); // Edad y unidad de edad predeterminadas
                         controller.agregarAnimalAHabitat(nombreHabitat, animal);
                         mostrarAlerta("Animal agregado exitosamente.");
                     } else {
@@ -304,27 +306,7 @@ public class PantallaGestionAnimales {
                 String nombreAnimal = animalParts[0].split(" \\(")[0];
                 String nombreHabitatOrigen = animalParts[1].split(" \\(")[0];
                 String nombreHabitatDestino = habitatDestinoInfo.split(" \\(")[0];
-                Habitat habitatOrigen = controller.getZoo().buscarHabitatPorNombre(nombreHabitatOrigen);
-                Habitat habitatDestinoObj = controller.getZoo().buscarHabitatPorNombre(nombreHabitatDestino);
-                if (habitatDestinoObj != null && habitatOrigen != null) {
-                    Animal animal = controller.getZoo().buscarAnimalPorNombre(nombreAnimal, habitatOrigen);
-                    if (animal != null) {
-                        if (esHabitatAdecuado(habitatDestinoObj, animal.getEspecie())) {
-                            if (habitatDestinoObj.getAnimales().size() < habitatDestinoObj.getCapacidad()) {
-                                controller.moverAnimal(nombreAnimal, nombreHabitatOrigen, nombreHabitatDestino);
-                                mostrarAlerta("Animal movido exitosamente.");
-                            } else {
-                                mostrarAlerta("El hábitat destino está lleno.");
-                            }
-                        } else {
-                            mostrarAlerta("El hábitat destino no es adecuado para el animal.");
-                        }
-                    } else {
-                        mostrarAlerta("Animal no encontrado en el hábitat de origen.");
-                    }
-                } else {
-                    mostrarAlerta("Hábitat de origen o destino no encontrado.");
-                }
+                controller.moverAnimal(nombreAnimal, nombreHabitatOrigen, nombreHabitatDestino);
             } else {
                 mostrarAlerta("Por favor, selecciona un animal y un hábitat destino.");
             }
@@ -426,4 +408,23 @@ public class PantallaGestionAnimales {
             alert.showAndWait();
         });
     }
+    private String determinarTipoComida(String especie) {
+        switch (especie.toLowerCase()) {
+            case "león":
+            case "tigre":
+            case "jaguar":
+                return "carne";
+            case "elefante":
+            case "jirafa":
+            case "cebra":
+                return "vegetales";
+            case "mono":
+            case "perezoso":
+            case "tapir":
+                return "frutas";
+            default:
+                return "vegetales"; // Valor predeterminado
+        }
+    }
+
 }

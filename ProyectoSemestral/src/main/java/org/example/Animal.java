@@ -3,44 +3,25 @@ public class Animal {
     private String especie;
     private int edad;
     private String unidadEdad;
+    private String tipoComida;
 
-    public Animal(String nombre, String especie, int edad, String unidadEdad) {
+    public Animal(String nombre, String especie, int edad, String unidadEdad, String tipoComida) {
         this.nombre = nombre;
         this.especie = especie;
         this.edad = edad;
         this.unidadEdad = unidadEdad;
+        this.tipoComida = tipoComida;
     }
 
     // Getters y Setters
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEspecie() {
-        return especie;
-    }
-
-    public void setEspecie(String especie) {
-        this.especie = especie;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public String getUnidadEdad() {
-        return unidadEdad;
-    }
-
-    public void setUnidadEdad(String unidadEdad) {
-        this.unidadEdad = unidadEdad;
-    }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getEspecie() { return especie; }
+    public void setEspecie(String especie) { this.especie = especie; }
+    public int getEdad() { return edad; }
+    public void setEdad(int edad) { this.edad = edad; }
+    public String getUnidadEdad() { return unidadEdad; }
+    public void setUnidadEdad(String unidadEdad) { this.unidadEdad = unidadEdad; }
+    public String getTipoComida() { return tipoComida; }
+    public void setTipoComida(String tipoComida) { this.tipoComida = tipoComida; }
 }
