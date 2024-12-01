@@ -6,12 +6,14 @@ public class Habitat {
     private String tipo;
     private int capacidad;
     private List<Animal> animales;
+    private int cantidadComida; // Nueva variable para almacenar la cantidad de comida
 
     public Habitat(String nombre, String tipo, int capacidad) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.capacidad = capacidad;
         this.animales = new ArrayList<>();
+        this.cantidadComida = 0; // Inicializar la cantidad de comida a 0
     }
 
     public void agregarAnimal(Animal animal) {
@@ -20,6 +22,15 @@ public class Habitat {
         } else {
             System.out.println("Capacidad máxima alcanzada para el hábitat: " + nombre);
         }
+    }
+
+    public void agregarComida(String tipo, int cantidad) {
+        // Aquí puedes añadir lógica para manejar diferentes tipos de comida si es necesario
+        this.cantidadComida += cantidad;
+    }
+
+    public int getCantidadComida() {
+        return cantidadComida;
     }
 
     public String getNombre() {

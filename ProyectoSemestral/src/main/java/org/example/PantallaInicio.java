@@ -31,7 +31,6 @@ public class PantallaInicio {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
-
         MediaView mediaView = new MediaView(mediaPlayer);
         mediaView.setPreserveRatio(false);
         mediaView.fitWidthProperty().bind(stage.widthProperty());

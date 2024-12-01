@@ -12,12 +12,6 @@ public class Zoo {
         habitats.add(habitat);
     }
 
-    public void moverAnimal(Animal animal, Habitat origen, Habitat destino) {
-        if (origen.getAnimales().remove(animal)) {
-            destino.agregarAnimal(animal);
-        }
-    }
-
     public Habitat buscarHabitatPorNombre(String nombre) {
         for (Habitat habitat : habitats) {
             if (habitat.getNombre().equals(nombre)) {
@@ -36,11 +30,17 @@ public class Zoo {
         return null;
     }
 
-        public List<Habitat> getHabitats() {
-            return habitats;
-        }
-
-        public void setHabitats(List<Habitat> habitats) {
-            this.habitats = habitats;
+    public void moverAnimal(Animal animal, Habitat origen, Habitat destino) {
+        if (origen.getAnimales().remove(animal)) {
+            destino.agregarAnimal(animal);
         }
     }
+
+    public List<Habitat> getHabitats() {
+        return habitats;
+    }
+
+    public void setHabitats(List<Habitat> habitats) {
+        this.habitats = habitats;
+    }
+}

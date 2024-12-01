@@ -21,7 +21,6 @@ public class ZooSimulator extends Application {
     public void start(Stage primaryStage) {
         Zoo zoo = new Zoo();
         controller = new ZooController(zoo);
-
         primaryStage.setTitle("Simulador de Zoo");
 
         // Añadir música de fondo
@@ -35,7 +34,6 @@ public class ZooSimulator extends Application {
         Text titulo = new Text("Simulador de Zoo");
         titulo.setFont(new Font("Arial", 30));
         titulo.setFill(Color.WHITE);
-
         // Crear el botón de inicio
         Button btnInicio = new Button("Inicio");
         btnInicio.setFont(new Font("Arial", 20));
