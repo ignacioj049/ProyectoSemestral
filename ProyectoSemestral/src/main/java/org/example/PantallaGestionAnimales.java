@@ -283,7 +283,6 @@ public class PantallaGestionAnimales {
         for (Habitat habitat : controller.getZoo().getHabitats()) {
             for (Animal animal : habitat.getAnimales()) {
                 listaAnimales.getItems().add(animal.getNombre() + " (" + animal.getEspecie() + ") - " + habitat.getNombre() + " (" + habitat.getTipo() + ")");
-                listaAnimales.getItems().add(animal.getNombre() + " (" + animal.getEspecie() + ") - " + habitat.getNombre() + " (" + habitat.getTipo() + ")");
             }
         }
 
