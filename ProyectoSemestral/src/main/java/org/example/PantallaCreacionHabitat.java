@@ -1,6 +1,8 @@
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -34,12 +36,6 @@ public class PantallaCreacionHabitat {
         TextField capacidadHabitat = new TextField();
         capacidadHabitat.setPromptText("Capacidad del Hábitat");
 
-        tipoHabitat.setOnAction(event -> {
-            String tipo = tipoHabitat.getValue();
-            int capacidadMaxima = getCapacidadMaxima(tipo);
-            capacidadHabitat.setText(String.valueOf(capacidadMaxima));
-        });
-
         Button btnCrear = new Button("Crear");
         btnCrear.setFont(new Font("Arial", 16));
         btnCrear.setTextFill(Color.WHITE);
@@ -47,17 +43,21 @@ public class PantallaCreacionHabitat {
         btnCrear.setOnAction(event -> {
             String nombre = nombreHabitat.getText();
             String tipo = tipoHabitat.getValue();
-            int capacidad = Integer.parseInt(capacidadHabitat.getText());
-            if (nombre != null && tipo != null && capacidad > 0) {
-                controller.crearHabitat(nombre, tipo, capacidad);
-                System.out.println("Hábitat creado: " + nombre + " (" + tipo + ") con capacidad de " + capacidad + " animales");
-
-                ScaleTransition st = new ScaleTransition(Duration.millis(200), btnCrear);
-                st.setByX(1.2);
-                st.setByY(1.2);
-                st.setAutoReverse(true);
-                st.setCycleCount(2);
-                st.play();
+            try {
+                int capacidad = Integer.parseInt(capacidadHabitat.getText());
+                int capacidadMaxima = getCapacidadMaxima(tipo);
+                if (nombre != null && !nombre.isEmpty() && tipo != null && capacidad > 0) {
+                    if (capacidad <= capacidadMaxima) {
+                        controller.crearHabitat(nombre, tipo, capacidad);
+                        mostrarAlerta("Hábitat creado: " + nombre + " (" + tipo + ") con capacidad de " + capacidad + " animales");
+                    } else {
+                        mostrarAlerta("Capacidad excedida. La capacidad máxima para " + tipo + " es " + capacidadMaxima + " animales.");
+                    }
+                } else {
+                    mostrarAlerta("Por favor, completa todos los campos correctamente.");
+                }
+            } catch (NumberFormatException e) {
+                mostrarAlerta("Capacidad debe ser un número entero válido.");
             }
         });
 
@@ -76,8 +76,10 @@ public class PantallaCreacionHabitat {
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(layout, 800, 600);
-        stage.setScene(scene);
-        stage.show();
+        Platform.runLater(() -> {
+            stage.setScene(scene);
+            stage.show();
+        });
     }
 
     private int getCapacidadMaxima(String tipo) {
@@ -119,5 +121,15 @@ public class PantallaCreacionHabitat {
             default:
                 return 0;
         }
+    }
+
+    private void mostrarAlerta(String mensaje) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setHeaderText(null);
+            alert.setContentText(mensaje);
+            alert.showAndWait();
+        });
     }
 }

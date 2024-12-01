@@ -53,7 +53,7 @@ public class PantallaEstadoAnimales {
         layout.getChildren().add(btnVolver);
         layout.setTranslateX(20); // Alinear al lado izquierdo
 
-        Scene scene = new Scene(layout, 800, 600); // Aumentar el tamaño de la ventana
+        Scene scene = new Scene(layout, 800, 600);
         stage.setScene(scene);
         stage.show();
     }

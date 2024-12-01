@@ -36,12 +36,11 @@ public class Zoo {
         return null;
     }
 
-    // Getters y Setters
-    public List<Habitat> getHabitats() {
-        return habitats;
-    }
+        public List<Habitat> getHabitats() {
+            return habitats;
+        }
 
-    public void setHabitats(List<Habitat> habitats) {
-        this.habitats = habitats;
+        public void setHabitats(List<Habitat> habitats) {
+            this.habitats = habitats;
+        }
     }
-}
