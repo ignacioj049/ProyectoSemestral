@@ -85,6 +85,12 @@ public class PantallaInicio {
             animarBoton(btnEstadoAnimales);
         });
 
+        Button btnVerAlertas = new Button("Ver Alertas");
+        btnVerAlertas.setFont(new Font("Arial", 16));
+        btnVerAlertas.setTextFill(Color.WHITE);
+        btnVerAlertas.setStyle("-fx-background-color: #4CAF50;");
+        btnVerAlertas.setOnAction(event -> mostrarPantallaAlertas());
+
         Button btnVolver = new Button("Volver");
         btnVolver.setFont(new Font("Arial", 16));
         btnVolver.setTextFill(Color.WHITE);
@@ -121,7 +127,7 @@ public class PantallaInicio {
 
         VBox layout = new VBox(10);
         layout.setStyle("-fx-background-color: transparent;");
-        layout.getChildren().addAll(titulo, btnVerZoo, btnCrearHabitat, btnGestionAnimales, btnGestionComida, btnEstadoAnimales, btnVolver);
+        layout.getChildren().addAll(titulo, btnVerZoo, btnCrearHabitat, btnGestionAnimales, btnGestionComida, btnEstadoAnimales, btnVerAlertas, btnVolver);
         layout.setAlignment(Pos.CENTER);
 
         StackPane root = new StackPane();
@@ -155,6 +161,11 @@ public class PantallaInicio {
     private void mostrarPantallaVerZoo() {
         PantallaVerZoo pantallaVerZoo = new PantallaVerZoo(stage, controller);
         pantallaVerZoo.mostrar();
+    }
+
+    private void mostrarPantallaAlertas() {
+        PantallaAlertas pantallaAlertas = new PantallaAlertas(stage, controller);
+        pantallaAlertas.mostrar();
     }
 
     private void animarBoton(Button button) {

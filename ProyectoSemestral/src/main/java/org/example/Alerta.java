@@ -17,13 +17,11 @@ public class Alerta {
         alert.setTitle("Alerta");
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
-
         // Animación de desvanecimiento para la alerta
         FadeTransition ft = new FadeTransition(Duration.millis(500), alert.getDialogPane());
         ft.setFromValue(0.0);
         ft.setToValue(1.0);
         ft.play();
-
         alert.showAndWait();
     }
 

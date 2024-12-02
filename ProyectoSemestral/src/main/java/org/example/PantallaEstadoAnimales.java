@@ -25,11 +25,24 @@ public class PantallaEstadoAnimales {
             habitatLabel.setOnMouseEntered(event -> {
                 StringBuilder info = new StringBuilder("Hábitat: " + habitat.getNombre() + "\nTipo: " + habitat.getTipo() + "\nAnimales:\n");
                 for (Animal animal : habitat.getAnimales()) {
-                    info.append(" - ").append(animal.getNombre()).append(" (").append(animal.getEspecie()).append(")\n");
+                    String estadoColor;
+                    switch (animal.getEstadoSalud().toLowerCase()) {
+                        case "saludable":
+                            estadoColor = "verde";
+                            break;
+                        case "enfermo":
+                            estadoColor = "amarillo";
+                            break;
+                        case "crítico":
+                            estadoColor = "rojo";
+                            break;
+                        default:
+                            estadoColor = "gris";
+                    }
+                    info.append(" - ").append(animal.getNombre()).append(" (").append(animal.getEspecie()).append(") - Estado: ").append(animal.getEstadoSalud()).append("\n");
                 }
                 habitatLabel.setText(info.toString());
 
-                // Animación de escala al mostrar información
                 ScaleTransition st = new ScaleTransition(Duration.millis(200), habitatLabel);
                 st.setByX(1.2);
                 st.setByY(1.2);
@@ -51,7 +64,6 @@ public class PantallaEstadoAnimales {
         });
 
         layout.getChildren().add(btnVolver);
-        layout.setTranslateX(20); // Alinear al lado izquierdo
 
         Scene scene = new Scene(layout, 800, 600);
         stage.setScene(scene);

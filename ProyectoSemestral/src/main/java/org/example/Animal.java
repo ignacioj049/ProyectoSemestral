@@ -4,6 +4,7 @@ public class Animal {
     private int edad;
     private String unidadEdad;
     private String tipoComida;
+    private String estadoSalud;
 
     public Animal(String nombre, String especie, int edad, String unidadEdad, String tipoComida) {
         this.nombre = nombre;
@@ -11,6 +12,7 @@ public class Animal {
         this.edad = edad;
         this.unidadEdad = unidadEdad;
         this.tipoComida = tipoComida;
+        this.estadoSalud = "saludable";
     }
 
     // Getters y Setters
@@ -24,4 +26,6 @@ public class Animal {
     public void setUnidadEdad(String unidadEdad) { this.unidadEdad = unidadEdad; }
     public String getTipoComida() { return tipoComida; }
     public void setTipoComida(String tipoComida) { this.tipoComida = tipoComida; }
+    public String getEstadoSalud() { return estadoSalud; }
+    public void setEstadoSalud(String estadoSalud) { this.estadoSalud = estadoSalud; }
 }
