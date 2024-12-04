@@ -15,7 +15,7 @@
     </properties>
 
     <dependencies>
-        <!-- JavaFX dependencies -->
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -49,17 +49,8 @@
     </dependencies>
 
     <build>
+
         <plugins>
-            <!-- Maven Compiler Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
-                <configuration>
-                    <release>22</release>
-                </configuration>
-            </plugin>
-            <!-- JavaFX Maven Plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -72,10 +63,11 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>org.example.ZooSimulator</mainClass>
-                    <modulePath>C:\Users\Ignacio Jara\Downloads\openjfx-23.0.1_windows-x64_bin-sdk\javafx-sdk-23.0.1\lib</modulePath>
+                    <mainClass>com.org.example.ZooSimulator</mainClass>
                 </configuration>
             </plugin>
         </plugins>
+
+
     </build>
 </project>
