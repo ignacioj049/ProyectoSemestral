@@ -15,7 +15,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -31,26 +30,31 @@
             <artifactId>javafx-media</artifactId>
             <version>23.0.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.0</version> <!-- Usa la última versión -->
+            <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.5.0</version> <!-- Usa la versión más reciente -->
+            <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
-
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>22</source>
+                    <target>22</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -63,11 +67,12 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.org.example.ZooSimulator</mainClass>
+                    <mainClass>org.example.ZooSimulator</mainClass>
+                    <jvmArgs>
+                        --add-exports javafx.base/com.sun.javafx=ALL-UNNAMED
+                    </jvmArgs>
                 </configuration>
             </plugin>
         </plugins>
-
-
     </build>
 </project>
