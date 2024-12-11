@@ -2,110 +2,90 @@ package views;
 
 import controllers.ZooController;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import views.components.*;
 
-public class PantallaPrincipalNueva extends BorderPane {
+public class PantallaPrincipal extends BorderPane {
     private ZooController controller;
+    private MediaView mediaView;
     private MapaZooComponent mapaZoo;
-    private VBox contenidoPrincipal;
-    private HBox barraLateral;
+    private PanelLateralDinamico panelLateral;
 
-    public PantallaPrincipalNueva(ZooController controller) {
+    public PantallaPrincipal(ZooController controller) {
         this.controller = controller;
-        this.mapaZoo = new MapaZooComponent(controller);
         inicializarComponentes();
-        mostrarMenuPrincipal();
+        aplicarEstilos();
     }
 
     private void inicializarComponentes() {
-        // Configurar barra lateral
-        barraLateral = new HBox(10);
-        barraLateral.setPadding(new Insets(10));
-        barraLateral.setStyle("-fx-background-color: #f0f0f0;");
-        barraLateral.setAlignment(Pos.CENTER);
-        setTop(barraLateral);
+        // Configurar el contenedor principal del mapa (lado izquierdo)
+        StackPane contenedorMapa = new StackPane();
+        contenedorMapa.setStyle("-fx-background-color: #1a1a1a;"); // Fondo oscuro para el video
 
-        // Configurar contenido principal
-        contenidoPrincipal = new VBox();
-        contenidoPrincipal.setAlignment(Pos.CENTER);
-        contenidoPrincipal.setPadding(new Insets(20));
-        contenidoPrincipal.setSpacing(10);
-        VBox.setVgrow(contenidoPrincipal, Priority.ALWAYS);
+        // Configurar MediaView para el video de fondo
+        mediaView = new MediaView();
+        mediaView.setFitWidth(800);
+        mediaView.setFitHeight(720);
+        mediaView.setPreserveRatio(false);
 
-        // Crear botones de navegación
-        Button btnMenu = createMenuButton("Menú Principal", this::mostrarMenuPrincipal);
-        Button btnMapa = createMenuButton("Ver Mapa", this::mostrarMapa);
+        // Crear y configurar el mapa
+        mapaZoo = new MapaZooComponent(controller);
+        mapaZoo.setPrefWidth(800);
+        mapaZoo.setPrefHeight(720);
+        mapaZoo.setStyle("-fx-background-color: rgba(255, 255, 255, 0.1);"); // Fondo semi-transparente
 
-        barraLateral.getChildren().addAll(btnMenu, btnMapa);
+        // Agregar video y mapa al contenedor
+        contenedorMapa.getChildren().addAll(mediaView, mapaZoo);
 
-        // Configurar el layout
-        setCenter(contenidoPrincipal);
+        // Crear panel lateral dinámico
+        panelLateral = new PanelLateralDinamico(controller, mapaZoo);
+        panelLateral.setPrefWidth(480);
+
+        // Configurar el layout principal
+        setLeft(contenedorMapa);
+        setRight(panelLateral);
+
+        // Agregar padding general
+        setPadding(new Insets(10));
+
+        // Agregar bordes y sombras
+        setBorder(new Border(new BorderStroke(
+                Color.rgb(200, 200, 200),
+                BorderStrokeStyle.SOLID,
+                new CornerRadii(5),
+                BorderWidths.DEFAULT
+        )));
     }
 
-    private void mostrarMenuPrincipal() {
-        contenidoPrincipal.getChildren().clear();
-        VBox menuBotones = new VBox(10);
-        menuBotones.setAlignment(Pos.CENTER);
-        menuBotones.setSpacing(20);
-        menuBotones.setPadding(new Insets(50));
+    private void aplicarEstilos() {
+        setStyle("-fx-background-color: white;");
 
-        menuBotones.getChildren().addAll(
-                createMenuButton("Crear Hábitat", () -> mostrarPanelCrearHabitat()),
-                createMenuButton("Gestionar Animales", () -> mostrarPanelGestionAnimales()),
-                createMenuButton("Ver Estado", () -> mostrarPanelEstado())
+        // Agregar efecto de sombra al contenedor del mapa
+        mediaView.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);");
+
+        // Estilo para el panel lateral
+        panelLateral.setStyle(
+                "-fx-background-color: white;" +
+                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, -5, 0);"
         );
-
-        contenidoPrincipal.getChildren().add(menuBotones);
     }
 
-    private Button createMenuButton(String texto, Runnable accion) {
-        Button boton = new Button(texto);
-        boton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; " +
-                "-fx-font-size: 14px; -fx-padding: 10 20; " +
-                "-fx-background-radius: 5;");
-        boton.setPrefWidth(200);
+    public void setBackgroundVideo(Media media) {
+        if (media != null && mediaView != null) {
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaView.setMediaPlayer(mediaPlayer);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.setMute(true);
+            mediaPlayer.setVolume(0);
+            mediaPlayer.play();
 
-        boton.setOnMouseEntered(e ->
-                boton.setStyle("-fx-background-color: #45a049; -fx-text-fill: white; " +
-                        "-fx-font-size: 14px; -fx-padding: 10 20; " +
-                        "-fx-background-radius: 5;"));
-
-        boton.setOnMouseExited(e ->
-                boton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; " +
-                        "-fx-font-size: 14px; -fx-padding: 10 20; " +
-                        "-fx-background-radius: 5;"));
-
-        boton.setOnAction(e -> accion.run());
-        return boton;
-    }
-
-    private void mostrarMapa() {
-        contenidoPrincipal.getChildren().clear();
-        mapaZoo.refrescarMapa(); // Cambiado de actualizarMapa a refrescarMapa
-        contenidoPrincipal.getChildren().add(mapaZoo);
-    }
-
-    private void mostrarPanelCrearHabitat() {
-        contenidoPrincipal.getChildren().clear();
-        PanelCreacionHabitat panelCreacion = new PanelCreacionHabitat(controller);
-        contenidoPrincipal.getChildren().add(panelCreacion);
-    }
-
-    private void mostrarPanelGestionAnimales() {
-        contenidoPrincipal.getChildren().clear();
-        PanelGestionAnimales panelGestion = new PanelGestionAnimales(controller, mapaZoo);
-        contenidoPrincipal.getChildren().add(panelGestion);
-    }
-
-    private void mostrarPanelEstado() {
-        contenidoPrincipal.getChildren().clear();
-        PanelEstadoAnimales panelEstado = new PanelEstadoAnimales(controller);
-        contenidoPrincipal.getChildren().add(panelEstado);
+            // Ajustar el tamaño del video cuando cambie el tamaño de la ventana
+            mediaView.fitWidthProperty().bind(mapaZoo.widthProperty());
+            mediaView.fitHeightProperty().bind(mapaZoo.heightProperty());
+        }
     }
 }

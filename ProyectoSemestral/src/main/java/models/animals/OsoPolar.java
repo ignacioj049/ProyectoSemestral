@@ -1,10 +1,20 @@
 package models.animals;
-import enums.TipoHabitat;
+
 import enums.TipoAnimal;
 import enums.TipoComida;
 
 public class OsoPolar extends Animal {
-    public OsoPolar() {
-        super("Oso Polar" , TipoAnimal.MAMIFERO, TipoComida.PESCADO, TipoHabitat.REGION_ARTICA);
+    public OsoPolar(String nombre) {
+        super(nombre, TipoAnimal.OSO_POLAR);
+    }
+
+
+    protected double getPesoInicial() {
+        return 450.0;
+    }
+
+
+    public TipoComida getTipoComidaPreferida() {
+        return TipoComida.PESCADO;
     }
 }

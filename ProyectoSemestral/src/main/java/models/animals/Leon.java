@@ -1,10 +1,20 @@
 package models.animals;
+
 import enums.TipoAnimal;
 import enums.TipoComida;
-import enums.TipoHabitat;
 
 public class Leon extends Animal {
-    public Leon() {
-        super("León", TipoAnimal.MAMIFERO, TipoComida.CARNE, TipoHabitat.SABANA_AFRICANA);
+    public Leon(String nombre) {
+        super(nombre, TipoAnimal.LEON);
+    }
+
+
+    protected double getPesoInicial() {
+        return 150.0;
+    }
+
+
+    public TipoComida getTipoComidaPreferida() {
+        return TipoComida.CARNE;
     }
 }

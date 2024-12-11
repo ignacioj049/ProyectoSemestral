@@ -1,35 +1,65 @@
 package models.habitats;
-import enums.TipoHabitat;
+
 import models.animals.Animal;
-import java.util.ArrayList;
-import java.util.List;
+import enums.TipoHabitat;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Habitat {
-    private String nombre;
-    private String tipo;
+    private String id;
+    private TipoHabitat tipo;
     private int capacidad;
-    private List<Animal> animales;
-    private int comidaCarne;
-    private int comidaVegetales;
-    private int comidaFrutas;
-    private int comidaPescado;
+    private Map<String, Animal> animales;
+    private double nivelLimpieza;
 
-    public Habitat(String nombre, String tipo, int capacidad) {
-        this.nombre = nombre;
-        this.capacidad = capacidad;
+    public Habitat(String id, TipoHabitat tipo, int capacidad) {
+        this.id = id;
         this.tipo = tipo;
-        this.animales = new ArrayList<>();
-        this.comidaCarne = 0;
-        this.comidaVegetales = 0;
-        this.comidaFrutas = 0;
-        this.comidaPescado = 0;
+        this.capacidad = capacidad;
+        this.animales = new HashMap<>();
+        this.nivelLimpieza = 100.0;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void agregarAnimal(Animal animal) {
+        if (animales.size() >= capacidad) {
+            throw new IllegalStateException("El hábitat está lleno");
+        }
+        animales.put(animal.getNombre(), animal);
+        animal.setHabitat(this);
     }
 
-    public String getTipo() {
+    public void removerAnimal(String nombre) {
+        Animal animal = animales.remove(nombre);
+        if (animal != null) {
+            animal.setHabitat(null);
+        }
+    }
+
+    public void actualizarEstado() {
+        // Reducir nivel de limpieza basado en la cantidad de animales
+        nivelLimpieza = Math.max(0, nivelLimpieza - (animales.size() * 0.5));
+
+        // Actualizar estado de los animales
+        for (Animal animal : animales.values()) {
+            animal.actualizarEstado();
+        }
+    }
+
+    public void limpiar() {
+        nivelLimpieza = 100.0;
+        // Aumentar felicidad de los animales cuando se limpia el hábitat
+        for (Animal animal : animales.values()) {
+            animal.jugar();
+        }
+    }
+
+    // Getters
+    public String getId() {
+        return id;
+    }
+
+    public TipoHabitat getTipo() {
         return tipo;
     }
 
@@ -37,65 +67,25 @@ public class Habitat {
         return capacidad;
     }
 
-    public List<Animal> getAnimales() {
-        return animales;
+    public Map<String, Animal> getAnimales() {
+        return new HashMap<>(animales);
     }
 
-    public void agregarAnimal(Animal animal) {
-        if (animales.size() < capacidad) {
-            animales.add(animal);
-        } else {
-            System.out.println("Capacidad máxima alcanzada para el hábitat: " + nombre);
-        }
+    public double getNivelLimpieza() {
+        return nivelLimpieza;
     }
 
-    public void agregarComida(String tipo, int cantidad) {
-        switch (tipo.toLowerCase()) {
-            case "carne":
-                comidaCarne += cantidad;
-                break;
-            case "vegetales":
-                comidaVegetales += cantidad;
-                break;
-            case "frutas":
-                comidaFrutas += cantidad;
-                break;
-            case "pescado":
-                comidaPescado += cantidad;
-                break;
-        }
+    public boolean necesitaLimpieza() {
+        return nivelLimpieza < 50;
     }
 
-    public void consumirComida(String tipo, int cantidad) {
-        switch (tipo.toLowerCase()) {
-            case "carne":
-                comidaCarne = Math.max(comidaCarne - cantidad, 0);
-                break;
-            case "vegetales":
-                comidaVegetales = Math.max(comidaVegetales - cantidad, 0);
-                break;
-            case "frutas":
-                comidaFrutas = Math.max(comidaFrutas - cantidad, 0);
-                break;
-            case "pescado":
-                comidaPescado = Math.max(comidaPescado - cantidad, 0);
-                break;
-        }
+    public boolean tieneEspacioDisponible() {
+        return animales.size() < capacidad;
     }
 
-    public int getComidaCarne() {
-        return comidaCarne;
-    }
-
-    public int getComidaVegetales() {
-        return comidaVegetales;
-    }
-
-    public int getComidaFrutas() {
-        return comidaFrutas;
-    }
-
-    public int getComidaPescado() {
-        return comidaPescado;
+    @Override
+    public String toString() {
+        return String.format("%s (%s) - Limpieza: %.0f%%, Animales: %d/%d",
+                id, tipo.getNombre(), nivelLimpieza, animales.size(), capacidad);
     }
 }

@@ -1,10 +1,20 @@
 package models.animals;
-import enums.TipoHabitat;
+
 import enums.TipoAnimal;
 import enums.TipoComida;
 
 public class Pinguino extends Animal {
-    public Pinguino() {
-        super("Pingüino" , TipoAnimal.AVE, TipoComida.PESCADO, TipoHabitat.REGION_ARTICA);
+    public Pinguino(String nombre) {
+        super(nombre, TipoAnimal.PINGUINO);
+    }
+
+
+    protected double getPesoInicial() {
+        return 30.0;
+    }
+
+
+    public TipoComida getTipoComidaPreferida() {
+        return TipoComida.PESCADO;
     }
 }

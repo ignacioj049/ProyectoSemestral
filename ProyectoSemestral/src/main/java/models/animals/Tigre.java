@@ -1,10 +1,20 @@
 package models.animals;
-import enums.TipoHabitat;
+
 import enums.TipoAnimal;
 import enums.TipoComida;
 
 public class Tigre extends Animal {
-    public Tigre() {
-        super("Tigre" , TipoAnimal.MAMIFERO, TipoComida.CARNE, TipoHabitat.JUNGLA_TROPICAL);
+    public Tigre(String nombre) {
+        super(nombre, TipoAnimal.TIGRE);
+    }
+
+
+    protected double getPesoInicial() {
+        return 140.0;
+    }
+
+
+    public TipoComida getTipoComidaPreferida() {
+        return TipoComida.CARNE;
     }
 }

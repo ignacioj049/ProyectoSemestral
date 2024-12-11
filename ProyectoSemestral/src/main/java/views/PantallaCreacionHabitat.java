@@ -1,113 +1,130 @@
 package views;
+
 import controllers.ZooController;
-import javafx.animation.ScaleTransition;
-import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import enums.TipoHabitat;
 
-public class PantallaCreacionHabitat {
-    private Stage stage;
+public class PantallaCreacionHabitat extends Stage {
     private ZooController controller;
+    private TextField nombreHabitat;
+    private ComboBox<TipoHabitat> tipoHabitat;
+    private Spinner<Integer> capacidad;
 
-    public PantallaCreacionHabitat(Stage stage, ZooController controller) {
-        this.stage = stage;
+    public PantallaCreacionHabitat(ZooController controller) {
         this.controller = controller;
+        inicializarVentana();
     }
 
-    public void mostrar() {
-        TextField nombreHabitat = new TextField();
-        nombreHabitat.setPromptText("Nombre del Hábitat");
+    private void inicializarVentana() {
+        setTitle("Crear Nuevo Hábitat");
 
-        ComboBox<String> tipoHabitat = new ComboBox<>();
-        tipoHabitat.getItems().addAll(
-                "Sabana Africana", "Jungla Tropical", "Región Ártica", "Desierto", "Océano y Acuarios", "Bosques Templados"
-        );
-        tipoHabitat.setPromptText("Tipo de Hábitat");
+        VBox contenedor = new VBox(20);
+        contenedor.setPadding(new Insets(20));
+        contenedor.setAlignment(Pos.CENTER);
+        contenedor.setStyle("-fx-background-color: white;");
 
-        TextField capacidadHabitat = new TextField();
-        capacidadHabitat.setPromptText("Capacidad del Hábitat");
+        // Título
+        Label titulo = new Label("Crear Nuevo Hábitat");
+        titulo.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+
+        // Formulario
+        GridPane formulario = crearFormulario();
+
+        // Botones
+        HBox botonesContainer = crearBotones();
+
+        contenedor.getChildren().addAll(titulo, formulario, botonesContainer);
+
+        Scene scene = new Scene(contenedor, 400, 300);
+        setScene(scene);
+    }
+
+    private GridPane crearFormulario() {
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setAlignment(Pos.CENTER);
+
+        // Nombre del hábitat
+        Label lblNombre = new Label("Nombre:");
+        nombreHabitat = new TextField();
+        nombreHabitat.setPromptText("Ingrese el nombre del hábitat");
+
+        // Tipo de hábitat
+        Label lblTipo = new Label("Tipo:");
+        tipoHabitat = new ComboBox<>();
+        tipoHabitat.getItems().addAll(TipoHabitat.values());
+        tipoHabitat.setPromptText("Seleccione el tipo de hábitat");
+
+        // Capacidad
+        Label lblCapacidad = new Label("Capacidad:");
+        capacidad = new Spinner<>(1, 10, 5);
+        capacidad.setEditable(true);
+
+        // Agregar elementos al grid
+        grid.add(lblNombre, 0, 0);
+        grid.add(nombreHabitat, 1, 0);
+        grid.add(lblTipo, 0, 1);
+        grid.add(tipoHabitat, 1, 1);
+        grid.add(lblCapacidad, 0, 2);
+        grid.add(capacidad, 1, 2);
+
+        return grid;
+    }
+
+    private HBox crearBotones() {
+        HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.CENTER);
 
         Button btnCrear = new Button("Crear");
-        btnCrear.setFont(new Font("Arial", 16));
-        btnCrear.setTextFill(Color.WHITE);
-        btnCrear.setStyle("-fx-background-color: #4CAF50;");
-        btnCrear.setOnAction(event -> {
-            String nombre = nombreHabitat.getText();
-            String tipo = tipoHabitat.getValue();
-            try {
-                int capacidad = Integer.parseInt(capacidadHabitat.getText());
-                int capacidadMaxima = getCapacidadMaxima(tipo);
-                if (nombre != null && !nombre.isEmpty() && tipo != null && capacidad > 0) {
-                    if (capacidad <= capacidadMaxima) {
-                        controller.crearHabitat(nombre, tipo, capacidad);
-                        mostrarAlerta("Hábitat creado: " + nombre + " (" + tipo + ") con capacidad de " + capacidad + " animales");
-                    } else {
-                        mostrarAlerta("Capacidad excedida. La capacidad máxima para " + tipo + " es " + capacidadMaxima + " animales.");
-                    }
-                } else {
-                    mostrarAlerta("Por favor, completa todos los campos correctamente.");
-                }
-            } catch (NumberFormatException e) {
-                mostrarAlerta("Capacidad debe ser un número entero válido.");
-            }
-        });
+        btnCrear.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        btnCrear.setOnAction(e -> crearHabitat());
 
-        Button btnVolver = new Button("Volver");
-        btnVolver.setFont(new Font("Arial", 16));
-        btnVolver.setTextFill(Color.WHITE);
-        btnVolver.setStyle("-fx-background-color: #f44336;");
-        btnVolver.setOnAction(event -> {
-            PantallaInicio pantallaInicio = new PantallaInicio(stage, controller);
-            pantallaInicio.mostrar();
-        });
+        Button btnCancelar = new Button("Cancelar");
+        btnCancelar.setStyle("-fx-background-color: #f44336; -fx-text-fill: white;");
+        btnCancelar.setOnAction(e -> close());
 
-        VBox layout = new VBox(10);
-        layout.setStyle("-fx-background-color: #f0f0f0;");
-        layout.getChildren().addAll(nombreHabitat, tipoHabitat, capacidadHabitat, btnCrear, btnVolver);
-        layout.setAlignment(Pos.CENTER);
-
-        Scene scene = new Scene(layout, 800, 600);
-        Platform.runLater(() -> {
-            stage.setScene(scene);
-            stage.show();
-        });
+        hbox.getChildren().addAll(btnCrear, btnCancelar);
+        return hbox;
     }
 
-    private int getCapacidadMaxima(String tipo) {
-        switch (tipo) {
-            case "Sabana Africana":
-                return 15;
-            case "Jungla Tropical":
-                return 20;
-            case "Región Ártica":
-                return 10;
-            case "Desierto":
-                return 8;
-            case "Océano y Acuarios":
-                return 25;
-            case "Bosques Templados":
-                return 12;
-            default:
-                return 0;
+    private void crearHabitat() {
+        String nombre = nombreHabitat.getText().trim();
+        TipoHabitat tipo = tipoHabitat.getValue();
+        int capacidadValue = capacidad.getValue();
+
+        if (nombre.isEmpty() || tipo == null) {
+            mostrarError("Por favor, complete todos los campos");
+            return;
+        }
+
+        try {
+            controller.crearHabitat(nombre, tipo, capacidadValue);
+            mostrarExito("Hábitat creado exitosamente");
+            close();
+        } catch (Exception e) {
+            mostrarError(e.getMessage());
         }
     }
 
-    private void mostrarAlerta(String mensaje) {
-        Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Información");
-            alert.setHeaderText(null);
-            alert.setContentText(mensaje);
-            alert.showAndWait();
-        });
+    private void mostrarError(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    private void mostrarExito(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Éxito");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }
