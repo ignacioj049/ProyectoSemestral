@@ -24,7 +24,7 @@ public class PanelEstadoAnimales extends VBox {
         setStyle("-fx-background-color: white;");
 
         Label titulo = new Label("Estado de los Animales");
-        titulo.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+        titulo.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;-fx-text-fill: black;");
 
         contenedorEstados = new VBox(10);
         ScrollPane scroll = new ScrollPane(contenedorEstados);
@@ -55,13 +55,13 @@ public class PanelEstadoAnimales extends VBox {
 
         // Información del hábitat
         Label habitatInfo = new Label(String.format(
-                "Hábitat: %s (%d/%d animales) - Limpieza: %.0f%%",
+                "Hábitat: %s (%d/%d animales)",
                 habitat.getId(),
                 habitat.getAnimales().size(),
                 habitat.getCapacidad(),
                 habitat.getNivelLimpieza()
         ));
-        habitatInfo.setStyle("-fx-font-weight: bold;");
+        habitatInfo.setStyle("-fx-font-weight: bold;-fx-text-fill: black;");
 
         // Lista de animales
         VBox animalesBox = new VBox(5);

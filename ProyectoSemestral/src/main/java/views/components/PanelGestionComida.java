@@ -37,7 +37,7 @@ public class PanelGestionComida extends VBox {
 
         // Título
         Label titulo = new Label("Gestionar Comida");
-        titulo.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        titulo.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;");
 
         // Header con botón de cerrar
         HBox header = new HBox(titulo, btnCerrar);
@@ -117,17 +117,14 @@ public class PanelGestionComida extends VBox {
 
             // Nombre de la comida
             Label nombreLabel = new Label(tipo.getNombre());
-            nombreLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+            nombreLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;-fx-text-fill: black;");
 
-            // Precio
-            Label precioLabel = new Label(String.format("Precio: $%.2f/kg", tipo.getPrecioPorKilo()));
-            precioLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;");
 
             // Instrucción
             Label dragLabel = new Label("Arrastra para alimentar");
-            dragLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-style: italic;");
+            dragLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-style: italic;-fx-text-fill: black;");
 
-            tarjeta.getChildren().addAll(nombreLabel, precioLabel, dragLabel);
+            tarjeta.getChildren().addAll(nombreLabel, dragLabel);
 
         } catch (Exception e) {
             System.err.println("Error al crear tarjeta para " + tipo.getNombre() + ": " + e.getMessage());

@@ -34,11 +34,7 @@ public class CeldaMapa extends VBox {
         habitatImage.setFitHeight(100);
         habitatImage.setPreserveRatio(true);
 
-        infoLabel = new Label();
-        infoLabel.setWrapText(true);
-        infoLabel.setStyle("-fx-font-size: 12px;");
-
-        getChildren().addAll(habitatImage, infoLabel);
+        getChildren().addAll(habitatImage);
     }
 
     public void setHabitat(String id, TipoHabitat tipo) {

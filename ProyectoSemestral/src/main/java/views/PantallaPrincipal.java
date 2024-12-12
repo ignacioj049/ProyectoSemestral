@@ -2,6 +2,7 @@ package views;
 
 import controllers.ZooController;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -87,5 +88,17 @@ public class PantallaPrincipal extends BorderPane {
             mediaView.fitWidthProperty().bind(mapaZoo.widthProperty());
             mediaView.fitHeightProperty().bind(mapaZoo.heightProperty());
         }
+    }
+    public void setContenidoCentral(Node contenido) {
+        // Asegurarse de que el mediaView esté en el fondo
+        if (mediaView != null) {
+            mediaView.toBack();
+        }
+
+        // Establecer el nuevo contenido en el centro
+        setCenter(contenido);
+
+        // Aplicar estilos si es necesario
+        contenido.setStyle("-fx-background-color: transparent;");
     }
 }

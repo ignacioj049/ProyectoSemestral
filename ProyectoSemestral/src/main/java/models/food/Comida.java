@@ -2,20 +2,24 @@ package models.food;
 
 import enums.TipoComida;
 
-public abstract class Comida {
-    private String nombre;
+public class Comida {
     private TipoComida tipo;
+    private double cantidad;
 
-    public Comida(String nombre, TipoComida tipo) {
-        this.nombre = nombre;
+    public Comida(TipoComida tipo, double cantidad) {
         this.tipo = tipo;
-    }
-
-    public String getNombre() {
-        return nombre;
+        this.cantidad = cantidad;
     }
 
     public TipoComida getTipo() {
         return tipo;
+    }
+
+    public double getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(double cantidad) {
+        this.cantidad = cantidad;
     }
 }

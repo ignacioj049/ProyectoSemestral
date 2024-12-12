@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bc37fb2d-46b9-45e9-94d5-262c043fc4c6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/main/java/models/Zoo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/main/java/models/Zoo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/Imagenes/DiagramaDeCasosDeUso.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/Imagenes/DiagramaDeCasosDeUso.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/Imagenes/DiagramaDeCasosDeUso2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/acciones/clean.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/acciones/clean.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/acciones/food.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/acciones/food.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/acciones/health.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/acciones/health.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/acciones/play.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/acciones/play.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/alertas/importante.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/alertas/importante.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/alertas/info.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/alertas/info.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/alertas/urgente.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/alertas/urgente.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/aguila_calva.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/aguila_calva.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/camello.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/camello.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/cebra.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/cebra.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/delfin.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/delfin.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/elefante.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/elefante.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/foca.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/foca.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/jaguar.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/jaguar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/jirafa.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/jirafa.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/leon.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/leon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/mono.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/mono.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/oso_polar.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/oso_polar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/pinguino.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/pinguino.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/tiburon.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/tiburon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/tigre.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/tigre.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/tortuga_marina.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/tortuga_marina.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/zorro_desierto.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/animales/zorro_desierto.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/background.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/carne.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/carne.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/frutas.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/frutas.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/insectos.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/insectos.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/pescado.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/pescado.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/semillas.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/semillas.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/vegetales.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/comidas/vegetales.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/habitats/acuatico.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/habitats/acuatico.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/habitats/desertico.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/habitats/desertico.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/habitats/polar.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/images/habitats/polar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/videos/background.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoSemestral/src/resources/videos/background.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/videos/background1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoSemestral/src/resources/videos/background2.gif" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ignacioj049&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ignacioj049/ProyectoSemestral.git&quot;,
+    &quot;accountId&quot;: &quot;662fa493-25fe-48bc-ade3-56755b959082&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2q8AI8fsYO1arsFFSalVogKthnQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ZooSimulator.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ignacio Jara/.jdks/javafx-sdk-23.0.1/lib&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="ZooSimulator" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="views.ZooSimulator" />
+      <module name="ProyectoSemestral" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bc37fb2d-46b9-45e9-94d5-262c043fc4c6" name="Changes" comment="" />
+      <created>1734033747639</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734033747639</updated>
+    </task>
+    <servers />
+  </component>
+</project>

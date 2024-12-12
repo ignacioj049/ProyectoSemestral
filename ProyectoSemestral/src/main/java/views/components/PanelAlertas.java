@@ -27,7 +27,7 @@ public class PanelAlertas extends VBox {
         setStyle("-fx-background-color: white;");
 
         Label titulo = new Label("Alertas del Zoo");
-        titulo.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+        titulo.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;-fx-text-fill: black;");
 
         contenedorAlertas = new VBox(10);
         ScrollPane scroll = new ScrollPane(contenedorAlertas);
@@ -41,18 +41,9 @@ public class PanelAlertas extends VBox {
         contenedorAlertas.getChildren().clear();
         List<VBox> alertas = new ArrayList<>();
 
-        // Revisar presupuesto bajo
-        if (controller.getPresupuesto() < 1000) {
-            alertas.add(crearAlertaPresupuesto());
-        }
 
         // Revisar estado de hábitats
         for (Habitat habitat : controller.getHabitats().values()) {
-            // Alerta de limpieza
-            if (habitat.necesitaLimpieza()) {
-                alertas.add(crearAlertaLimpieza(habitat));
-            }
-
             // Alerta de capacidad
             if (!habitat.tieneEspacioDisponible()) {
                 alertas.add(crearAlertaCapacidad(habitat));
@@ -78,28 +69,6 @@ public class PanelAlertas extends VBox {
         }
     }
 
-    private VBox crearAlertaPresupuesto() {
-        VBox alerta = crearBaseAlerta("¡Presupuesto Bajo!",
-                String.format("El presupuesto actual es $%.2f", controller.getPresupuesto()));
-
-        Button btnAgregarFondos = new Button("Agregar Fondos");
-        btnAgregarFondos.setOnAction(e -> agregarFondos());
-
-        alerta.getChildren().add(btnAgregarFondos);
-        return alerta;
-    }
-
-    private VBox crearAlertaLimpieza(Habitat habitat) {
-        VBox alerta = crearBaseAlerta("¡Hábitat Sucio!",
-                String.format("El hábitat %s necesita limpieza (Nivel: %.0f%%)",
-                        habitat.getId(), habitat.getNivelLimpieza()));
-
-        Button btnLimpiar = new Button("Limpiar Hábitat");
-        btnLimpiar.setOnAction(e -> limpiarHabitat(habitat.getId()));
-
-        alerta.getChildren().add(btnLimpiar);
-        return alerta;
-    }
 
     private VBox crearAlertaCapacidad(Habitat habitat) {
         return crearBaseAlerta("¡Hábitat Lleno!",
@@ -151,23 +120,7 @@ public class PanelAlertas extends VBox {
         return alerta;
     }
 
-    private void agregarFondos() {
-        try {
-            controller.agregarFondos(1000);
-            actualizarAlertas();
-        } catch (Exception e) {
-            mostrarError("Error al agregar fondos", e.getMessage());
-        }
-    }
 
-    private void limpiarHabitat(String habitatId) {
-        try {
-            controller.limpiarHabitat(habitatId);
-            actualizarAlertas();
-        } catch (Exception e) {
-            mostrarError("Error al limpiar hábitat", e.getMessage());
-        }
-    }
 
     private void alimentarAnimal(String habitatId, String nombreAnimal) {
         try {

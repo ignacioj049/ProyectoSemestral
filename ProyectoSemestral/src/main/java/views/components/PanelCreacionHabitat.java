@@ -38,7 +38,7 @@ public class PanelCreacionHabitat extends VBox {
 
         // Título
         Label titulo = new Label("Crear Hábitat");
-        titulo.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        titulo.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;-fx-text-fill: black;");
 
         // Header con botón de cerrar
         HBox header = new HBox(titulo, btnCerrar);
@@ -48,7 +48,7 @@ public class PanelCreacionHabitat extends VBox {
 
         // Descripción
         Label descripcion = new Label("Arrastra un tipo de hábitat al mapa para crearlo");
-        descripcion.setStyle("-fx-font-size: 14px; -fx-text-fill: #666;");
+        descripcion.setStyle("-fx-font-size: 14px; -fx-text-fill: #666;-fx-text-fill: black;");
         descripcion.setWrapText(true);
 
         // Grid de hábitats
@@ -111,22 +111,22 @@ public class PanelCreacionHabitat extends VBox {
 
                 // Agregar texto al placeholder
                 Label placeholderText = new Label(tipo.getNombre().substring(0, 1));
-                placeholderText.setStyle("-fx-font-size: 36px; -fx-text-fill: #666;");
+                placeholderText.setStyle("-fx-font-size: 36px; -fx-text-fill: #666;-fx-text-fill: black;");
                 tarjeta.getChildren().add(placeholderText);
             }
 
             // Nombre del hábitat
             Label nombreLabel = new Label(tipo.getNombre());
-            nombreLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+            nombreLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;-fx-text-fill: black;");
 
             // Descripción
             Label descLabel = new Label(tipo.getDescripcion());
             descLabel.setWrapText(true);
-            descLabel.setStyle("-fx-text-alignment: center;");
+            descLabel.setStyle("-fx-text-alignment: center;-fx-text-fill: black;");
 
             // Información adicional
             Label infoLabel = new Label("Arrastra para crear");
-            infoLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-style: italic;");
+            infoLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-style: italic;-fx-text-fill: black;");
 
             tarjeta.getChildren().addAll(nombreLabel, descLabel, infoLabel);
 

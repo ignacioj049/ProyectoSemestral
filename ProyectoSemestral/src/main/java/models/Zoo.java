@@ -1,130 +1,61 @@
 package models;
 
-import models.animals.Animal;
 import models.habitats.Habitat;
-import enums.TipoHabitat;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Zoo {
+public class Zoo implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private List<Habitat> habitats;
     private String nombre;
-    private Map<String, Habitat> habitats;
-    private double presupuesto;
 
-    public Zoo(String nombre, double presupuestoInicial) {
-        this.nombre = nombre;
-        this.habitats = new HashMap<>();
-        this.presupuesto = presupuestoInicial;
+    public Zoo() {
+        this.habitats = new ArrayList<>();
+        this.nombre = "Zoo Simulator";
     }
 
-    public void agregarHabitat(Habitat habitat) {
-        if (habitats.containsKey(habitat.getId())) {
-            throw new IllegalArgumentException("Ya existe un hábitat con el ID: " + habitat.getId());
+    public boolean agregarHabitat(Habitat habitat) {
+        if (!existeHabitat(habitat.getNombre())) {
+            return habitats.add(habitat);
         }
-        habitats.put(habitat.getId(), habitat);
+        return false;
     }
 
-    public void removerHabitat(String habitatId) {
-        if (!habitats.containsKey(habitatId)) {
-            throw new IllegalArgumentException("No existe un hábitat con el ID: " + habitatId);
-        }
-        habitats.remove(habitatId);
+    public boolean removerHabitat(Habitat habitat) {
+        return habitats.remove(habitat);
     }
 
-    public Habitat buscarHabitat(String habitatId) {
-        return habitats.get(habitatId);
+    public List<Habitat> getHabitats() {
+        return new ArrayList<>(habitats);
     }
 
-    public void agregarAnimal(String habitatId, Animal animal) {
-        Habitat habitat = habitats.get(habitatId);
-        if (habitat == null) {
-            throw new IllegalArgumentException("No existe el hábitat especificado");
-        }
-        habitat.agregarAnimal(animal);
+    public Habitat buscarHabitatPorNombre(String nombre) {
+        return habitats.stream()
+                .filter(h -> h.getNombre().equalsIgnoreCase(nombre))
+                .findFirst()
+                .orElse(null);
     }
 
-    public void removerAnimal(String habitatId, String nombreAnimal) {
-        Habitat habitat = habitats.get(habitatId);
-        if (habitat == null) {
-            throw new IllegalArgumentException("No existe el hábitat especificado");
-        }
-        habitat.removerAnimal(nombreAnimal);
+    public boolean existeHabitat(String nombre) {
+        return habitats.stream()
+                .anyMatch(h -> h.getNombre().equalsIgnoreCase(nombre));
     }
 
-    public void actualizarEstado() {
-        for (Habitat habitat : habitats.values()) {
-            habitat.actualizarEstado();
-        }
-    }
-
-    public void alimentarAnimal(String habitatId, String nombreAnimal, double cantidadComida) {
-        Habitat habitat = habitats.get(habitatId);
-        if (habitat == null) {
-            throw new IllegalArgumentException("No existe el hábitat especificado");
-        }
-
-        Animal animal = habitat.getAnimales().get(nombreAnimal);
-        if (animal == null) {
-            throw new IllegalArgumentException("No existe el animal especificado");
-        }
-
-        animal.alimentar(cantidadComida);
-    }
-
-    public void limpiarHabitat(String habitatId) {
-        Habitat habitat = habitats.get(habitatId);
-        if (habitat == null) {
-            throw new IllegalArgumentException("No existe el hábitat especificado");
-        }
-        habitat.limpiar();
-    }
-
-    // Getters y setters
     public String getNombre() {
         return nombre;
     }
 
-    public Map<String, Habitat> getHabitats() {
-        return new HashMap<>(habitats);
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public double getPresupuesto() {
-        return presupuesto;
-    }
-
-    public void setPresupuesto(double presupuesto) {
-        if (presupuesto < 0) {
-            throw new IllegalArgumentException("El presupuesto no puede ser negativo");
-        }
-        this.presupuesto = presupuesto;
-    }
-
-    public void agregarFondos(double cantidad) {
-        if (cantidad <= 0) {
-            throw new IllegalArgumentException("La cantidad debe ser positiva");
-        }
-        this.presupuesto += cantidad;
-    }
-
-    public void reducirFondos(double cantidad) {
-        if (cantidad <= 0) {
-            throw new IllegalArgumentException("La cantidad debe ser positiva");
-        }
-        if (cantidad > presupuesto) {
-            throw new IllegalStateException("No hay suficientes fondos");
-        }
-        this.presupuesto -= cantidad;
-    }
-
-    public boolean tieneHabitatDisponible(TipoHabitat tipo) {
-        return habitats.values().stream()
-                .anyMatch(h -> h.getTipo() == tipo && h.tieneEspacioDisponible());
-    }
-
-    public Habitat obtenerHabitatDisponible(TipoHabitat tipo) {
-        return habitats.values().stream()
-                .filter(h -> h.getTipo() == tipo && h.tieneEspacioDisponible())
-                .findFirst()
-                .orElse(null);
+    @Override
+    public String toString() {
+        return "Zoo{" +
+                "nombre='" + nombre + '\'' +
+                ", número de hábitats=" + habitats.size() +
+                '}';
     }
 }

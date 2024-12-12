@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Habitat {
+    private String nombre;  // Agregar este campo
     private String id;
     private TipoHabitat tipo;
     private int capacidad;
@@ -19,6 +20,8 @@ public class Habitat {
         this.capacidad = capacidad;
         this.animales = new HashMap<>();
         this.nivelLimpieza = 100.0;
+        this.nombre = tipo.getNombre(); // Usar el nombre del tipo de hábitat
+
     }
 
     public void agregarAnimal(Animal animal) {
@@ -83,6 +86,9 @@ public class Habitat {
         return animales.size() < capacidad;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
     @Override
     public String toString() {
         return String.format("%s (%s) - Limpieza: %.0f%%, Animales: %d/%d",

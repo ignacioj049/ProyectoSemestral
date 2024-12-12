@@ -14,7 +14,6 @@ public class ZooController {
 
     public ZooController() {
         this.habitats = new HashMap<>();
-        this.presupuesto = 10000.0; // Presupuesto inicial
     }
 
     public void crearHabitat(String id, TipoHabitat tipo, int capacidad) {
@@ -46,37 +45,11 @@ public class ZooController {
         return new HashMap<>(habitats);
     }
 
-    public double getPresupuesto() {
-        return presupuesto;
-    }
 
     public void actualizarEstadoGeneral() {
         for (Habitat habitat : habitats.values()) {
             habitat.actualizarEstado();
         }
-    }
-    // ... métodos existentes ...
-
-    public void agregarFondos(double cantidad) {
-        if (cantidad <= 0) {
-            throw new IllegalArgumentException("La cantidad debe ser positiva");
-        }
-        presupuesto += cantidad;
-    }
-
-    public void limpiarHabitat(String habitatId) {
-        Habitat habitat = habitats.get(habitatId);
-        if (habitat == null) {
-            throw new IllegalArgumentException("Hábitat no encontrado");
-        }
-
-        double costoLimpieza = 100.0;
-        if (presupuesto < costoLimpieza) {
-            throw new IllegalStateException("No hay suficiente presupuesto");
-        }
-
-        presupuesto -= costoLimpieza;
-        habitat.limpiar();
     }
 
     public void alimentarAnimal(String habitatId, String nombreAnimal, double cantidadComida) {
@@ -90,12 +63,7 @@ public class ZooController {
             throw new IllegalArgumentException("Animal no encontrado");
         }
 
-        double costoComida = cantidadComida * 50.0; // 50 por kilo
-        if (presupuesto < costoComida) {
-            throw new IllegalStateException("No hay suficiente presupuesto");
-        }
-
-        presupuesto -= costoComida;
+        // Simplemente alimentar al animal sin verificar presupuesto
         animal.alimentar(cantidadComida);
     }
 
@@ -109,13 +77,6 @@ public class ZooController {
         if (animal == null) {
             throw new IllegalArgumentException("Animal no encontrado");
         }
-
-        double costoAtencion = 200.0;
-        if (presupuesto < costoAtencion) {
-            throw new IllegalStateException("No hay suficiente presupuesto");
-        }
-
-        presupuesto -= costoAtencion;
         animal.curar();
     }
 }

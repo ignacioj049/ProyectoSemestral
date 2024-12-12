@@ -38,7 +38,7 @@ public class PanelGestionAnimales extends VBox {
 
         // Título
         Label titulo = new Label("Gestionar Animales");
-        titulo.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        titulo.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;-fx-text-fill: black;");
 
         // Header con botón de cerrar
         HBox header = new HBox(titulo, btnCerrar);
@@ -48,7 +48,7 @@ public class PanelGestionAnimales extends VBox {
 
         // Descripción
         Label descripcion = new Label("Arrastra un animal al hábitat para agregarlo");
-        descripcion.setStyle("-fx-font-size: 14px; -fx-text-fill: #666;");
+        descripcion.setStyle("-fx-font-size: 14px; -fx-text-fill: #666;-fx-text-fill: black;");
         descripcion.setWrapText(true);
 
         // Grid de animales
@@ -118,15 +118,15 @@ public class PanelGestionAnimales extends VBox {
 
             // Nombre del animal
             Label nombreLabel = new Label(tipo.getNombre());
-            nombreLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+            nombreLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;-fx-text-fill: black;");
 
             // Información del animal
             Label infoLabel = new Label("Hábitat: " + tipo.getHabitatPreferido().getNombre());
-            infoLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;");
+            infoLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;-fx-text-fill: black;");
 
             // Instrucción
             Label dragLabel = new Label("Arrastra para crear");
-            dragLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-style: italic;");
+            dragLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-style: italic;-fx-text-fill: black;");
 
             tarjeta.getChildren().addAll(nombreLabel, infoLabel, dragLabel);
 
