@@ -21,12 +21,36 @@ Diagrama de casos de uso:
 ![Diagrama de Casos de Uso](src/main/resources/Imagenes/DiagramaDeCasosDeUso.jpg)
 
 
-Patrones utilizados: 
+Patrones utilizados:
+Singleton: Se asegura de que una clase tenga una única instancia y proporciona un punto global de acceso a ella.
+El patrón Singleton nos es útil para gestionar recursos compartidos como inventarios de comida o la lista de hábitats.
 
-captura de pantalla de la interfaz:
+Clase que forma parte del patrón Singleton: 1.- ZooController: esta clase administra el estado general del zoológico
 
-Decisiones a tomar dentro del proyecto:  
+Factory: Porque permite delegar la creación de objetos a subclases específicas, lo que facilita la extensión del
+sistema y reduce el acoplamiento entre las clases. Es util para agregar nuevos animales, habitats o alimentos.
 
-Problemas encontrados: Nuestro mayor problema ha sido implementar la interfaz gráfica a nuestro proyecto,
-ya que era necesario descargar otros componentes a Intellij, además de implementar la lógica de dicha interfaz 
-para que coincidiera con nuestro proyecto
+Clases que forman parte de Factory:1.- Animal, 2.- Comida, 3.- Habitat
+
+Observer: Porque nos sirve para manejar las alertas o notificaciones sobre el estado de los animales, por ejemplo si falta comida
+permite que múltiples objetos sean notificados automáticamente cuando el estado de un objeto observado cambia.
+
+Clase que forma parte de observer: 1.- Alerta
+
+Captura de pantalla de la interfaz:
+
+Decisiones a tomar dentro del proyecto: Cada habitat tendrá una imagen referente en vez de una figura de un solo color.
+Inicialmente, el simulador consistía en ingresar a través de un menú principal a cada acción que debía realizar el usuario, sin
+embargo, esto involucraba el paso por muchas pantallas, lo que hacía tedioso su uso y poco interactivo, que no era lo que
+nuestro referente necesitaba que dicho simulador cumpliera, por lo que se debió cambiar el formato de presentación y reducirlo a
+una sola pantalla, en donde se visualizaran las acciones ejecutadas por el usuario, asi como los habitats y los animales.
+
+Se tomó la decisión radical de hacer el proyecto desde cero, pues las mejoras implementadas en el código anterior no
+estaban dando resultados favorables, además el referente detectó uso de ia, lo que implicó una penalización en el proyecto general
+
+
+Problemas encontrados: Nuestro principal y mayor problema ha sido implementar la interfaz gráfica a nuestro proyecto,
+ya que era necesario descargar otros componentes a Intellij, además de implementar la lógica de dicha interfaz
+para que coincidiera con nuestro proyecto.
+Se nos ha dificultado en mayor medida hacer que el simulador de zoo sea interactivo para el usuario.
+
