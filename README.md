@@ -16,8 +16,7 @@ habitats (mediante un temporizador) y a veces consumen comida. Este software deb
 ubicados en los habitats adecuados para ellos y cuando falte comida en alguno de los habitats se genere una alerta.
 
 Diagrama UML:
-
-
+![alt text](DiagramaUMLFinal.jpg)
 Diagrama de casos de uso:
 ![Diagrama de Casos de Uso](src/resources/Imagenes/DiagramaDeCasosDeUso2.jpg)
 
