@@ -19,24 +19,41 @@ Diagrama UML:
 
 
 Diagrama de casos de uso:
-![Diagrama de Casos de Uso](src/resources/Imagenes/DiagramaDeCasosDeUso2.jpg)
+![Diagrama de Casos de Uso](src/main/resources/Images/DiagramaDeCasosDeUso.jpg)
 
 
 Patrones utilizados:
 Singleton: Se asegura de que una clase tenga una única instancia y proporciona un punto global de acceso a ella.
 El patrón Singleton nos es útil para gestionar recursos compartidos como inventarios de comida o la lista de hábitats.
 
-Clase que forma parte del patrón Singleton: 1.- ZooController: esta clase administra el estado general del zoológico
+Clase que forma parte del patrón Singleton: 1.- Zoo: esta clase administra el estado general del zoológico
 
 Factory: Porque permite delegar la creación de objetos a subclases específicas, lo que facilita la extensión del
-sistema y reduce el acoplamiento entre las clases. Es util para agregar nuevos animales, habitats o alimentos.
+sistema y reduce el acoplamiento entre las clases. Es util para agregar nuevos animales, habitats o alimentos. 
+Crea instancias de animales, habitats y comida según el tipo solicitado
 
-Clases que forman parte de Factory:1.- Animal, 2.- Comida, 3.- Habitat
+Clases que forman parte de Factory:1.- AnimalFactory, 2.- ComidaFactory, 3.- HabitatFactory
 
 Observer: Porque nos sirve para manejar las alertas o notificaciones sobre el estado de los animales, por ejemplo si falta comida
 permite que múltiples objetos sean notificados automáticamente cuando el estado de un objeto observado cambia.
 
-Clase que forma parte de observer: 1.- Alerta
+Clases que forma parte de observer: 1.-Zoo, 2.- ZooSimulator, 3.- InfoPanel, 4.- ZooPanel 
+
+Template Method: Define el esqueleto de operaciones dejando detalles a las subclases
+Clases que forman parte de Template Method: 1.- Animal, 2.- Habitat, 3.- Comida
+
+Strategy: Se implementó en el comportamiento de movimiento de los animales, permite
+diferentes estrategias de movimiento según el estado del animal
+Clase que forma parte de Strategy: implicitamente en Animal, en el estado de los animales
+
+Composite: Implementado en la estructura de la interfaz gráfica, en la jerarquía de componentes de la UI.
+Permite tratar grupos de objetos y objetos individuales de manera uniforme
+
+Clase en que está implementado: ZooPanel
+
+
+State: Implementado en el comportamiento de los animales según su estado (hambriento, comiendo, etc.)
+Clase que forma parte de State: implicitamente en clase Animal, en el estado de los animales 
 
 captura de pantalla de la interfaz:
 
