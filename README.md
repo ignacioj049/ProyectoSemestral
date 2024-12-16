@@ -38,7 +38,7 @@ permite que múltiples objetos sean notificados automáticamente cuando el estad
 
 Clase que forma parte de observer: 1.- Alerta
 
-captura de pantalla de la interfaz:
+Captura de pantalla de la interfaz:![alt text](<Captura de pantalla 2024-12-16 161947-1.png>) ![alt text](<Captura de pantalla 2024-12-16 162017-1.png>) ![alt text](<Captura de pantalla 2024-12-16 162139-1.png>)
 
 Decisiones a tomar dentro del proyecto: Cada habitat tendrá una imagen referente en vez de una figura de un solo color.
 Inicialmente, el simulador consistía en ingresar a través de un menú principal a cada acción que debía realizar el usuario, sin
