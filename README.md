@@ -16,8 +16,7 @@ habitats (mediante un temporizador) y a veces consumen comida. Este software deb
 ubicados en los habitats adecuados para ellos y cuando falte comida en alguno de los habitats se genere una alerta.
 
 Diagrama UML:
-
-
+![alt text](DiagramaUMLFinal-1.jpg)
 Diagrama de casos de uso:
 ![Diagrama de Casos de Uso](src/main/resources/Images/DiagramaDeCasosDeUso.jpg)
 
@@ -55,7 +54,7 @@ Clase en que está implementado: ZooPanel
 State: Implementado en el comportamiento de los animales según su estado (hambriento, comiendo, etc.)
 Clase que forma parte de State: implicitamente en clase Animal, en el estado de los animales 
 
-captura de pantalla de la interfaz:
+Captura de pantalla de la interfaz:![alt text](<Captura de pantalla 2024-12-16 161947-1.png>) ![alt text](<Captura de pantalla 2024-12-16 162017-1.png>) ![alt text](<Captura de pantalla 2024-12-16 162139-1.png>)
 
 Decisiones a tomar dentro del proyecto: Cada habitat tendrá una imagen referente en vez de una figura de un solo color.
 Inicialmente, el simulador consistía en ingresar a través de un menú principal a cada acción que debía realizar el usuario, sin
