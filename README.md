@@ -18,7 +18,7 @@ ubicados en los habitats adecuados para ellos y cuando falte comida en alguno de
 Diagrama UML:
 ![alt text](DiagramaUMLFinal-1.jpg)
 Diagrama de casos de uso:
-![Diagrama de Casos de Uso](src/main/resources/Images/DiagramaDeCasosDeUso.jpg)
+![Diagrama de Casos de Uso](DiagramaDeCasosDeUso.jpg)
 
 
 Patrones utilizados:
